@@ -8,7 +8,15 @@ module.exports = function(sequelize, DataTypes) {
   },
 
   image:{
-    type:DataTypes.TEXT,
+    type: {
+      type: Sequelize.STRING
+    },
+    data: {
+      type: Sequelize.BLOB('long')
+    },
+    name: {
+      type: Sequelize.STRING
+    },
   },
 
 
