@@ -1,8 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "root",
     "database": "askLocalDb",
+    "port": 3305,
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

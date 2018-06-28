@@ -9,13 +9,13 @@ module.exports = function(sequelize, DataTypes) {
 
   image:{
     type: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     data: {
-      type: Sequelize.BLOB('long')
+      type: DataTypes.BLOB('long')
     },
     name: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
   },
 
