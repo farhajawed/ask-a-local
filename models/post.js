@@ -1,23 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   var Post = sequelize.define("Post", {
     
-    title:
-    { 
+  title:
+  { 
       type: DataTypes.STRING,
       allowNull:false
   },
-
-  // image:{
-  //   type: {
-  //     type: Sequelize.STRING
-  //   },
-  //   data: {
-  //     type: Sequelize.BLOB('long')
-  //   },
-  //   name: {
-  //     type: Sequelize.STRING
-  //   },
-  // },
   image:
   {
     type:DataTypes.STRING
