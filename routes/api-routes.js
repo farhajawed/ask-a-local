@@ -34,7 +34,7 @@ module.exports = function(app) {
   app.get("/api/categories", function(req, res) {
     db.Category.findAll({})
       .then(function(result) {
-        res.json(result);
+        res.end();
       });
    });
   
@@ -68,7 +68,7 @@ module.exports = function(app) {
  app.get("/api/posts", function(req, res) {
   db.Post.findAll({include: [ db.Category ] },{})
     .then(function(dbPost) {
-    res.json(dbPost);
+    res.end();
   });
 });
 
@@ -83,7 +83,7 @@ app.get("/api/posts/:id", function(req, res) {
     },
     include: [db.Category]
   }).then(function(dbPost) {
-    res.json(dbPost);
+    res.end();
   });
 });
 
