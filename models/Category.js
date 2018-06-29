@@ -4,15 +4,18 @@ module.exports = function(sequelize,DataTypes) {
     
         name: DataTypes.STRING
     
+    },
+    {
+        timestamps:false,
     });
     
-        Category.associate=function(models) {
-    
-            models.Category.hasMany(models.Post,{
-            foreignKey: {
-                allowNull:true
-            }
-        });
+    Category.associate=function(models) {
+
+        Category.hasMany(models.Post,{
+            onDelete: "cascade"
+        
+        
+    });
     
     }
     return Category;
