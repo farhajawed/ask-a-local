@@ -7,17 +7,17 @@ module.exports = function(sequelize, DataTypes) {
       allowNull:false
   },
 
-  image:{
-    type: {
-      type: Sequelize.STRING
-    },
-    data: {
-      type: Sequelize.BLOB('long')
-    },
-    name: {
-      type: Sequelize.STRING
-    },
-  },
+  // image:{
+  //   type: {
+  //     type: Sequelize.STRING
+  //   },
+  //   data: {
+  //     type: Sequelize.BLOB('long')
+  //   },
+  //   name: {
+  //     type: Sequelize.STRING
+  //   },
+  // },
 
 
   body: {
