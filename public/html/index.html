@@ -19,7 +19,23 @@
     <title>Welcome to Ask-A-Local</title>
 </head>
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
 
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
    <!--Login Up Form-->
     
@@ -29,7 +45,7 @@
                 <div class="card border-dark">
                     <div class="card-header"><h3>Log In</h3></div>
                     <div class="card-body">
-                      <form id="login" action="/api/posts" method="POST" enctype="multipart/form-data">
+                      <form id="login" action="/" method="POST">
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
@@ -45,8 +61,5 @@
               </div>
         </div>
    </div>
-
-    <!--Custom JS-->
-    <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>

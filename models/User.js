@@ -1,26 +1,43 @@
+var bcrypt = require('bcrypt');
+
+
 module.exports =function (sequelize,DataTypes) {
  
     var User = sequelize.define("User", {
 
     email: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull:false
     },
     username: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull:false
     },
     password: {
         type: DataTypes.STRING,
         allowNull:false
     },
+    token: DataTypes.STRING,
     firstName:DataTypes.STRING,
     lastName:DataTypes.STRING,
     bio: DataTypes.TEXT,
     image:
         {
             type:DataTypes.STRING
-    }
+    }}, {
+        // hooks: {
+        //   beforeCreate: (user) => {
+        //     const salt = bcrypt.genSaltSync();
+        //     user.password = bcrypt.hashSync(user.password, salt);
+        //   }
+        // },
+        instanceMethods: {
+          validPassword: function(password) {
+            return bcrypt.compareSync(password, this.password);
+          }
+        }    
     });
 
 
@@ -33,12 +50,6 @@ module.exports =function (sequelize,DataTypes) {
             onDelete: "cascade"
         });
     };
-
-
-
-
-  
-
 return User;
 
 }
