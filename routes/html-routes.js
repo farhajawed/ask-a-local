@@ -4,18 +4,18 @@ var path = require("path");
 // =============================================================
 module.exports = function(app) {
 
-  // index route loads index.html Login Page
+// index route loads index.html Login Page
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/index.html"));
   });
 
 
-  //signup page
+  // signup page
   app.get("/signup", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/signup.html"));
   });
 
-  //home page
+  // //home page
   app.get("/home", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/home.html"));
   });
