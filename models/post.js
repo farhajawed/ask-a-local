@@ -1,30 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
   var Post = sequelize.define("Post", {
     
-    title:
-    { 
+  title:{ 
       type: DataTypes.STRING,
       allowNull:false
   },
 
-  image:{
-    type: {
-      type: DataTypes.STRING
-    },
-    data: {
-      type: DataTypes.BLOB('long')
-    },
-    name: {
-      type: DataTypes.STRING
-    },
-  },
-
-
   body: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-  });
+      type: DataTypes.TEXT('long'),
+      allowNull: true
+  },
+});
 //when comment is deleted, post will be deleted
 /*Post.associate = function(models) {
     Post.hasMany(models.Comment, {
@@ -50,6 +36,8 @@ Post.associate = function(models) {
       }
     });
   };*/
+
+
 
 
   return Post;

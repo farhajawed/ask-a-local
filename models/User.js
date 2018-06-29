@@ -15,7 +15,7 @@ module.exports =function (sequelize,DataTypes) {
     image:
         {
             type:DataTypes.TEXT
-     },
+    },
 
 
     fullname:DataTypes.STRING,
@@ -23,8 +23,8 @@ module.exports =function (sequelize,DataTypes) {
 
     bio: DataTypes.TEXT,
 
-    });
 
+    });
 
     User.associate = function (models) {
         models.User.hasMany(models.Comment, {

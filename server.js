@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var morgan = require('morgan');
 
+
 var app = express();
 var PORT = process.env.PORT || 8080;
 
@@ -41,13 +42,7 @@ app.use((req, res, next) => {
   next();
 });
 
-var sessionChecker = (req, res, next) => {
-  if (req.session.user && req.cookies.user_sid) {
-      res.redirect('/dashboard');
-  } else {
-      next();
-  }    
-};
+
 
 // Routes
 // =============================================================
