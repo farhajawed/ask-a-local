@@ -1,6 +1,6 @@
 module.exports =function (sequelize,DataTypes) {
  
-    var User = sequelize.define("User", {
+    const User = sequelize.define("User", {
 
         email: {
             type: DataTypes.STRING,
@@ -31,6 +31,10 @@ module.exports =function (sequelize,DataTypes) {
             onDelete: "cascade"
         });
         models.User.hasMany(models.Post, {
+
+            onDelete: "cascade"
+        });
+        models.User.hasMany(models.Image, {
 
             onDelete: "cascade"
         });

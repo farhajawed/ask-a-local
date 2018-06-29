@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Comment = sequelize.define("Comment", {
+    const Comment = sequelize.define("Comment", {
      
     
       body: {
@@ -13,14 +13,12 @@ module.exports = function(sequelize, DataTypes) {
   
 
     Comment.associate = function(models) {
-        Comment.belongsTo(models.Post, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
-      };
-          
-      return Comment;
-    };
-    /**** */
+      Comment.belongsTo(models.Post, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };   
+  return Comment;
+};
   
