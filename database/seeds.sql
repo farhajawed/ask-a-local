@@ -1,0 +1,1 @@
+INSERT INTO categories (name) values ("Food"),("Restaurant"),("Places"),("Shopping");
