@@ -9,6 +9,10 @@ module.exports = function(app) {
         next();
     }    
   };
+  // route for Home-Page
+  app.get('/', sessionChecker, (req, res) => {
+    res.redirect('/login');
+  });
 
   
 
