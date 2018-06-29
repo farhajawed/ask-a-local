@@ -30,11 +30,10 @@ module.exports = function(app) {
     }
   }); 
 
-  
   app.get("/api/categories", function(req, res) {
     db.Category.findAll({})
       .then(function(result) {
-        res.end();
+        res.json(result);
       });
    });
   
@@ -68,22 +67,18 @@ module.exports = function(app) {
  app.get("/api/posts", function(req, res) {
   db.Post.findAll({include: [ db.Category ] },{})
     .then(function(dbPost) {
-    res.end();
+    res.json(dbPost);
   });
 });
 
-// Get route for retrieving a single post
 app.get("/api/posts/:id", function(req, res) {
-  // Here we add an "include" property to our options in our findOne query
-  // We set the value to an array of the models we want to include in a left outer join
-  // In this case, just db.Author
   db.Post.findOne({
     where: {
       id: req.params.id
     },
     include: [db.Category]
   }).then(function(dbPost) {
-    res.end();
+    res.json(dbPost);
   });
 });
 
