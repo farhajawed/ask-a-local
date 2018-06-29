@@ -8,3 +8,7 @@ body{
 .img-style{
    width:800px;
 }
+
+.card{
+    display:inline-block;
+}
