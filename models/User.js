@@ -17,13 +17,12 @@ module.exports =function (sequelize,DataTypes) {
     firstName:DataTypes.STRING,
     lastName:DataTypes.STRING,
     bio: DataTypes.TEXT,
+    token: DataTypes.STRING,
     image:
     {
             type:DataTypes.STRING
     }
     });
-
-
     User.associate = function (models) {
         models.User.hasMany(models.Comment, {
             onDelete: "cascade"
@@ -33,12 +32,5 @@ module.exports =function (sequelize,DataTypes) {
             onDelete: "cascade"
         });
     };
-
-
-
-
-  
-
 return User;
-
 }
