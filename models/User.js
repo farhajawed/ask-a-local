@@ -18,7 +18,7 @@ module.exports =function (sequelize,DataTypes) {
     lastName:DataTypes.STRING,
     bio: DataTypes.TEXT,
     image:
-        {
+    {
             type:DataTypes.STRING
     }
     });
