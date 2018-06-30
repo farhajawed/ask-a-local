@@ -53,9 +53,6 @@ $(document).ready(function() {
   }
   
  
-    $.post("/home", function() {
-      window.location.href = "/blog";
-    
-  });
+  
 
 });
