@@ -17,10 +17,13 @@ module.exports = function(app) {
 
   // index route loads index.html Login Page
   app.get("/", function(req, res) {
-    if (req.session.user){
+  if(!req.session.user || !req.cookies){
+      res.sendFile(path.join(__dirname, "../public/html/index.html"));
+   }
+   else if (req.session.user){
       res.redirect("/dashboard?email="+req.session.user.email);
     }
-    if (req.cookies){
+  else if (req.cookies){
       db.User.findOne({
         where: {
           token: req.cookies.token
@@ -33,9 +36,7 @@ module.exports = function(app) {
         }
       });
      }
-   else{
-      res.sendFile(path.join(__dirname, "../public/html/index.html"));
-   }
+  
   });
   
 
@@ -45,7 +46,7 @@ module.exports = function(app) {
   });
 
   //home page
-  app.get("/home", auth,function(req, res) {
+  app.get("/home", auth, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/home.html"));
   });
 
