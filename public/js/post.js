@@ -12,6 +12,14 @@ $(document).ready(function() {
     // getPosts();
   }
 
+  if (url.indexOf("?email=") !== -1) {
+    var userEmail = url.split("=")[1];
+    console.log(userEmail);
+    // getUserEmail(userEmail);
+    $("#userEmail").html(userEmail);
+  }
+ 
+
  function getCategories() {
     $.get("/api/categories", function(data) {
       if (data) {
@@ -39,12 +47,15 @@ $(document).ready(function() {
          $("#post-category").append(data.Category.name);
          var img = $("<img>").attr("src","/images/upload_images/"+data.image);
          img.addClass("img-style");
-         $("#post-image").append(img);
-        
-        
+         $("#post-image").append(img);  
       }
     });
   }
-
+  
+ 
+    $.post("/home", function() {
+      window.location.href = "/blog";
+    
+  });
 
 });
