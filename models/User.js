@@ -26,18 +26,20 @@ module.exports =function (sequelize,DataTypes) {
     image:
         {
             type:DataTypes.STRING
-    }}, {
-        // hooks: {
-        //   beforeCreate: (user) => {
-        //     const salt = bcrypt.genSaltSync();
-        //     user.password = bcrypt.hashSync(user.password, salt);
-        //   }
-        // },
-        instanceMethods: {
-          validPassword: function(password) {
-            return bcrypt.compareSync(password, this.password);
-          }
-        }    
+    }
+    
+    // , {
+    //     // hooks: {
+    //     //   beforeCreate: (user) => {
+    //     //     const salt = bcrypt.genSaltSync();
+    //     //     user.password = bcrypt.hashSync(user.password, salt);
+    //     //   }
+    //     // },
+    //     instanceMethods: {
+    //       validPassword: function(password) {
+    //         return bcrypt.compareSync(password, this.password);
+    //       }
+    //     }    
     });
 
 
@@ -50,6 +52,6 @@ module.exports =function (sequelize,DataTypes) {
             onDelete: "cascade"
         });
     };
-return User;
+    return User;
 
 }
