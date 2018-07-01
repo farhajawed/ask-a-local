@@ -26,24 +26,22 @@ app.use(cookieParser());
 
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
-    key: 'user_sid',
-    secret: 'somerandonstuffs',
+    secret: "tokensarerandomstuff",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 600000
-    }
+    saveUninitialized: true,
+    cookie: {secure: "auto", maxAge: 99999}
 }));
 
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-      res.clearCookie('user_sid');        
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.cookies.token && !req.session.user) {
+//       res.redirect("/dashboard")
+//   }
+//   next();
+// });
 
 // app.use(function (req, res, next) {
 //   res.status(404).send("Sorry can't find that!")
+//   res.redirect("/signup");
 // });
 
 
@@ -58,8 +56,8 @@ require("./routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-//db.sequelize.sync({ force: false }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
-//});
+});

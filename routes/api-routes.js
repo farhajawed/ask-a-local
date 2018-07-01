@@ -3,10 +3,10 @@ var db = require("../models");
 module.exports = function(app) {
 
   var sessionChecker = (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
-        res.redirect('/home');
+    if (req.session.user && req.cookies.token) {
+        res.redirect('/dashboard');
     } else {
-        next();
+        res.redirect("/signup");
     }    
   };
 
@@ -15,17 +15,21 @@ module.exports = function(app) {
         password = req.body.password;
 
     db.User.findOne({ where: { email: email } }).then(function (user) {
-        console.log(user.dataValues.password);
+        console.log(user);
 
         if(user.dataValues.password === password && user.dataValues.email === email){
           
           var token = "t" + Math.random();
-          db.User.update({token: token}).then(function(){
+          db.User.update({token: token}, { where: {
+            email: req.body.email
+          }}).then(function(){
             res.end();
           })
 
           res.cookie("token", token);
-          req.session.user = user;
+          req.session.user = user.dataValues;
+          return res.redirect("/dashboard");
+
         } else{
           res.redirect('/');
         }
