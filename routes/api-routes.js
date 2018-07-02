@@ -182,18 +182,17 @@ app.get("/api/posts/user/:id",function(req, res) {
   });
 });
 
-app.get("/api/posts/user/:id/title/:title",function(req, res) {
-  db.Post.findAll({
-    where: {
-      title: {
-        $like: '%' + req.params.title + '%'
+  app.get("/api/posts/user/:id/title/:title",function(req, res) {
+    db.Post.findAll({
+      where: {
+        title: {
+          $like: '%' + req.params.title + '%'
+        },
+        UserId: req.params.id
       },
-      UserId: req.params.id
-    },
-    include: [db.Category]
-  }).then(function(dbPost) {
-    res.json(dbPost);
+      include: [db.Category]
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
   });
-});
-
 }
