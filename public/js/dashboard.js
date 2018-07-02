@@ -108,20 +108,21 @@ $(document).ready(function() {
          for(var i=0; i<data.length;i++){
            postsToAdd.push(createNewRow(data[i]));
          }
-         postContainer.append(postsToAdd);
-         
+         postContainer.append(postsToAdd);        
      }
   }
+
   function createNewRow(post){
-       
      var postDiv =$("<div>").addClass("post-div mb-4");
      var singlePostDiv = $("<div>").addClass("single-post");
      var postTitle = $("<div>").addClass("post-title");
-     postTitle.html(post.title);
+     var anchor = $("<a>").attr("href","../view-post?post_id="+post.id);
+     anchor.html(post.title);
+     postTitle.html(anchor);
      var additionalDiv = $("<div>").addClass("additional-div");
      var text = "Posted in "+post.Category.name+" | Created at "+dateFormat(post.createdAt,"MM/DD/YYYY hh:mm:ss");
      additionalDiv.html(text);
-     postDiv.append(singlePostDiv.append(postTitle,additionalDiv));
+     postDiv.append(singlePostDiv.append(anchor,additionalDiv));
      return postDiv;
   }
 
