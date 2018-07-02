@@ -160,8 +160,6 @@ body{
     padding:10px;
 }
 
-
-
 .additional-div{
    font-style: italic;
    color:#db6f57;
@@ -178,7 +176,19 @@ body{
     background:darkcyan;
     color:white;
     padding:10px;
+    padding-left:20px;
+    padding-right: 20px;
     border-radius:15px;
     /* margin: 0 auto; */
 }
 
+/* .right,.left{
+    border: 1px solid white;
+} */
+
+.right{
+    margin-top:10px;
+    margin-bottom:10px;
+    background: rgba(0,0,0,.13) !important;
+    border-radius:10px;
+}

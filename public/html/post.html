@@ -64,17 +64,39 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-2 offset-md-5 mt-4">
-                    <div class="text-center header-post">New Post</div>
+            <div class="row">
+                <div class="col-md-2 left mt-3">
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+                                  <div class="card-header" role="tab" id="headingOne">
+                                    <h5 class="mb-0">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                       About Author
+                                      </a>
+                                    </h5>
+                                  </div>
+                              
+                                  <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="card-block">
+                                     Biography
+                                    </div>
+                                  </div>
+                                </div>
                 </div>
-                <div class="col-md-10 offset-md-1 mt-4 mb-4 post-div">
+                </div>
+                <div class="col-md-10 right">
+                  <div class="row">
+                    <div class="col-md-2 offset-md-5">
+                       <div class="text-center header-post mb-2">New Post</div>
+                    </div>
+                 </div>    
+                 <div class="row">
+                    <div class="col-md-12">
                     <form id="new-post" action="/api/posts" method="POST" enctype="multipart/form-data">
                         <div class="form-group d-inline mx-auto center">
-                            <input type="text" class="form-control custom" id="title" name="title" placeholder="Title of your post....">
+                            <input type="text" class="form-control custom" id="title" name="title" placeholder="Post title....">
                             <br>
-                            <textarea class="form-control custom" rows="10" id="body" name="body" placeholder="Share your experience..."></textarea>
+                            <textarea class="form-control custom" rows="10" id="body" name="body" placeholder="Share your thoughts..."></textarea>
                             <br>
                             <select class="custom-select" id="category" name="category">
                             </select>
@@ -82,11 +104,22 @@
                             <br>
                             <input class="form-control custom" type="file" name="uploaded_image" accept="" />
                         </div>
-                        <button type="submit" class="btn btn-publish submit">Publish</button>
-                    </form>
-                </div>
+                        <!-- <button type="submit" class="btn btn-publish submit mt-2">Publish</button>
+                    </form> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                        <div class="col-md-2 offset-md-5">
+                                <button type="submit" class="btn btn-publish submit mt-2">Publish</button>
+                        </div>
+                  </div>
+                </form>
+              </div>
             </div>
         </div>
+    
+    
+    
 
         <!--Custom JS-->
         <script src="js/tooltip.js" type="text/javascript"></script>
@@ -95,3 +128,4 @@
 </body>
 
 </html>
+
