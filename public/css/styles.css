@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Wendy+One');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    background:lavender;
+    background:#36465d;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color:#212529;
 }
 
 
 .navbar-light{
-    background: darkslateblue !important;
-    border-bottom:2px solid rgb(94, 154, 189);
+    background: #36465d !important;
+    border-bottom:2px solid #727e8e;
 
 }
 
 .navbar-brand{
-    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: white !important;
 }
 .btn-search{
-    background-color: darkorange;
+    background-color: #db6f57;;
     /* border:2px solid rgb(94, 154, 189); */
 }
 
@@ -40,7 +40,7 @@ body{
     font-weight: bold;
 }
 .logged-username{
-    border-right:2px ridge darkorange;
+    border-right:2px ridge #db6f57;;
 }
 
 .btn-search:hover{
@@ -62,7 +62,7 @@ body{
 .profile-div{
     background:darkslateblue;
     color:beige;
-    border:2px ridge darkorange; 
+    border:2px ridge #db6f57;; 
 }
 
 .name-style{
@@ -84,24 +84,24 @@ body{
     
     margin-bottom: 2px; 
     background: darkslateblue;
-    padding-left:5px;
-    border:1px ridge darkorange;
+    padding-left:30px;
+    border:1px ridge #db6f57;;
     border-radius: 10px;
 }
 
 .make-post-div{
-    background: lavender;
+    background: #36465d;;
     border:0px;   
 }
 .div-header{
-    color:darkorange;
+    color:#db6f57;;
     font-size:20px;
-    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;  
 }
 
 .form-control{
-    border:1px solid darkorange !important;
+    border:1px solid #db6f57 !important;
 }
 
 .view-edit-btn{
@@ -129,3 +129,43 @@ body{
     cursor: pointer;
 }
 
+.bio{
+    font-style: italic;
+    color:#db6f57;
+}
+
+.post{
+    background: darkslateblue;
+    border-radius:10px;
+    padding:20px;
+}
+
+.post-div{
+   background: #727e8e;
+   padding:20px;
+   border-radius:10px;
+   color: black;
+}
+
+.header-post{
+    font-size:20px;
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    background: #db6f57;
+    border-radius: 20px;
+    padding:10px;
+}
+
+
+
+.additional-div{
+   font-style: italic;
+   color:#db6f57;
+}
+
+
+.post-title:hover{
+    color: #36465d;
+    cursor: pointer;
+    text-decoration: underline;
+}
