@@ -19,7 +19,7 @@ $(document).ready(function () {
         option.attr("value", "default");
         option.attr("disabled", "disabled");
         option.attr("selected", "selected");
-        option.html("Select a category of your post");
+        option.html("Select a category");
         categoryContainer.append(option);
         for (var i = 0; i < data.length; i++) {
           var option = $("<option>");
@@ -32,7 +32,6 @@ $(document).ready(function () {
   }
 
   getCategories();
-
 
   function getPostData(id) {
     var queryUrl = "/api/posts/" + id;

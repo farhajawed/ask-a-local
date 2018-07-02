@@ -102,10 +102,8 @@ app.get("/api/categories",auth,function(req, res) {
     var file = req.files.uploaded_image;
 		var img_name=file.name;
     res.set('Content-Type', 'text/plain');
-    if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-                                 
+    if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){                        
       file.mv('public/images/upload_images/'+file.name, function(err) {
-
       if (err){
         return res.status(500).send(err);
     }
