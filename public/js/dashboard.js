@@ -117,6 +117,7 @@ $(document).ready(function() {
      var singlePostDiv = $("<div>").addClass("single-post");
      var postTitle = $("<div>").addClass("post-title");
      var anchor = $("<a>").attr("href","../view-post?post_id="+post.id);
+     anchor.addClass("post-title-anchor")
      anchor.html(post.title);
      postTitle.html(anchor);
      var additionalDiv = $("<div>").addClass("additional-div");
