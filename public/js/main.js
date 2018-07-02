@@ -19,7 +19,7 @@ $(document).ready(function() {
     function getLoggedUser(){
         $.get("/user",function(data){
             $(".logged-username").html(data.username);  
-            $("#email").html(data.email); 
+            // $("#email").html(data.email); 
         })
     }
 

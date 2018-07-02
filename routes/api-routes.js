@@ -73,10 +73,21 @@ app.get('/logout',auth,function (req, res) {
 
 });
 
+//session user
 app.get("/user",auth,function(req, res) {
       res.json(req.session.user);
  });
 
+
+ app.get("/user/:id", auth,function(req, res) {
+  db.User.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(dbUser) {
+    res.json(dbUser);
+  });
+});
 
 app.get("/api/categories",auth,function(req, res) {
     db.Category.findAll({})
@@ -85,6 +96,7 @@ app.get("/api/categories",auth,function(req, res) {
       });
    });
   
+   //need to refactor this function
    app.post("/api/posts", function(req, res) {
     console.log("Received data", req.files);
     var file = req.files.uploaded_image;
@@ -101,13 +113,44 @@ app.get("/api/categories",auth,function(req, res) {
       title: req.body.title,
       body:req.body.body,
       CategoryId:req.body.category,
-      image: img_name
+      image: img_name,
+      UserId : req.session.user.id
     }).
     then(function(result) {
       res.redirect("/view-post?post_id="+result.id);
     })
   });
  }
+}); 
+
+  //need to refactor this function
+app.post("/update/profile", function(req, res) {
+  var file = req.files.uploaded_image;
+  var img_name=file.name;
+  res.set('Content-Type', 'text/plain');
+  if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+                               
+    file.mv('public/images/upload_images/'+file.name, function(err) {
+
+    if (err){
+      return res.status(500).send(err);
+  }
+  db.User.update({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    location: req.body.location,
+    bio: req.body.bio,
+    image: img_name
+  },{
+    where: {
+      id: req.session.user.id
+    }
+  }).
+  then(function(result) {
+    res.redirect("/dashboard");
+  })
+});
+}
 }); 
 
 app.get("/api/posts", auth,function(req, res) {
@@ -128,5 +171,14 @@ app.get("/api/posts/:id", auth,function(req, res) {
   });
 });
 
-
+app.get("/api/posts/user/:id",function(req, res) {
+  db.Post.findAll({
+    where: {
+      UserId: req.params.id
+    },
+    include: [db.Category]
+  }).then(function(dbPost) {
+    res.json(dbPost);
+  });
+});
 }
