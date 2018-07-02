@@ -1,11 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Wendy+One');
+
 body{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    background:beige;
+    background:lavender;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#212529;
 }
 
-.img-style{
-   width:800px;
+
+.navbar-light{
+    background: darkslateblue !important;
+    border-bottom:2px solid rgb(94, 154, 189);
+
+}
+
+.navbar-brand{
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: bold;
+    color: white !important;
+}
+.btn-search{
+    background-color: darkorange;
+    /* border:2px solid rgb(94, 154, 189); */
+}
+
+/* as the navbar images were not aligning properly */
+.nav-link{
+    padding:0;
+}
+
+.fa-search{
+    color:white;
+}
+
+.sign-out,.logged-username{
+    color: white !important;
+    font-weight: bold;
+}
+.logged-username{
+    border-right:2px ridge darkorange;
+}
+
+.btn-search:hover{
+    background-color: orange !important;
+    cursor: pointer;
+}
+
+.fa-globe-americas,.fa-home{
+    font-size: 32px;
+    color: black;
+}
+.fa-globe-americas:hover,.fa-home:hover,.sign-out:hover,.logged-username:hover{
+    color: orange !important;
+    cursor: pointer; 
+}
+
+
+/* dashboard */
+.profile-div{
+    background:darkslateblue;
+    color:beige;
+    border:2px ridge darkorange; 
+}
+
+.name-style{
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+
+.single-post{
+    background:snow;
+    border:2px ridge darkslateblue;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:5px;
+}
+
+
+.make-post-btn{
+    
+    margin-bottom: 2px; 
+    background: darkslateblue;
+    padding-left:5px;
+    border:1px ridge darkorange;
+    border-radius: 10px;
+}
+
+.make-post-div{
+    background: lavender;
+    border:0px;   
+}
+.div-header{
+    color:darkorange;
+    font-size:20px;
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: bold;  
+}
+
+.form-control{
+    border:1px solid darkorange !important;
+}
+
+.view-edit-btn{
+    color:darkslateblue;
+    font-weight: bold;
+}
+
+.edit-about:hover{
+    color:orange;
+    cursor: pointer;
+}
+
+.view-edit-btn{
+    font-size: 23px;
+}
+
+.view-btn:hover,.edit-btn:hover{
+  color: slateblue;
+  cursor: pointer;
+}
+
+.make-post-btn:hover{
+   
+    color: orange;
+    cursor: pointer;
 }
 

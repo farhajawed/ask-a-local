@@ -4,11 +4,19 @@ module.exports =function (sequelize,DataTypes) {
 
     email: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        unique: {
+            args: true,
+            msg: 'Email address already in use!'
+        }
     },
     username: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        unique: {
+            args: true,
+            msg: 'Username already in use!'
+        }
     },
     password: {
         type: DataTypes.STRING,
@@ -18,9 +26,11 @@ module.exports =function (sequelize,DataTypes) {
     lastName:DataTypes.STRING,
     bio: DataTypes.TEXT,
     token: DataTypes.STRING,
+    location: DataTypes.STRING,
     image:
     {
-            type:DataTypes.STRING
+            type:DataTypes.STRING,
+            defaultValue:"default.png"
     }
     });
     User.associate = function (models) {

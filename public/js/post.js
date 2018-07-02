@@ -45,9 +45,11 @@ $(document).ready(function() {
          $("#post-title").append(data.title);
          $("#post-body").append(data.body);
          $("#post-category").append(data.Category.name);
-         var img = $("<img>").attr("src","/images/upload_images/"+data.image);
-         img.addClass("img-style");
-         $("#post-image").append(img);  
+        //  if(data.image){
+          var img = $("<img>").attr("src","/images/upload_images/"+data.image);
+          img.addClass("img-style");
+          $("#post-image").append(img); 
+        //  }    
       }
     });
   }

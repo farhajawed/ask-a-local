@@ -1,6 +1,6 @@
 var path = require("path");
 var db = require("../models");
-const encrypt = require("./encryption.js")
+
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -12,7 +12,8 @@ module.exports = function(app) {
       return next();
     }
     else
-      return res.sendStatus(401);
+      // return res.sendStatus(401);
+      return res.redirect("/?msg=unauthorized");
   };
 
   // index route loads index.html Login Page
@@ -21,9 +22,10 @@ module.exports = function(app) {
       res.sendFile(path.join(__dirname, "../public/html/index.html"));
    }
    else if (req.session.user){
-      res.redirect("/dashboard?email="+req.session.user.email);
-    }
-  else if (req.cookies){
+      res.redirect("/dashboard");
+   }
+   else if(req.cookies){
+     //need to place else where??
       db.User.findOne({
         where: {
           token: req.cookies.token
@@ -36,18 +38,12 @@ module.exports = function(app) {
         }
       });
      }
-  
   });
   
 
   //signup page
   app.get("/signup", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/signup.html"));
-  });
-
-  //home page
-  app.get("/home", auth, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/home.html"));
   });
 
   //Make new post page

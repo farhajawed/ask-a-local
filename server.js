@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var	fileUpload = require('express-fileupload');
-// var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var cookies = require("cookie-parser");
 var app = express();
@@ -41,7 +40,7 @@ require("./routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: false }).then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

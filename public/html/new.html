@@ -1,0 +1,49 @@
+<html>
+<head>
+<style type="text/css">
+   body {
+         font-family: sans-serif;
+         font-size: 14px;
+   }
+</style>
+
+<title>Google Maps JavaScript API v3 Example: Places Autocomplete</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXkEKPw1TkZISbwNugXgct88VIcw1axFQ&libraries=places" type="text/javascript"></script>
+<script type="text/javascript">
+   function initialize() {
+      var input = document.getElementById('searchTextField');
+      var options = {
+        types: ['geocode'] //this should work !
+      };
+      var autocomplete = new google.maps.places.Autocomplete(input, options);
+   }
+   google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+</head>
+<body>
+   <div>
+      <input id="searchTextField" class="submit_on_enter" type="text" size="50" placeholder="Enter a location" autocomplete="on">
+   </div>
+   <div class="city"></div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<script>
+  $('.submit_on_enter').keydown(function(event) {
+    // enter has keyCode = 13, change it if you want to use another button
+    if (event.keyCode == 13) {
+      var location = $("#searchTextField").val();
+      var array = location.split(",");
+      console.log(array);
+      for(var i = 0; i< array.length; i++){
+        array[i]= array[i].trim();
+      }
+      console.log(array);
+      if(array.length<=1){
+        console.log("Please add city,country");
+      }
+    }
+  });
+</script>
