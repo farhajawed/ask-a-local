@@ -1,8 +1,10 @@
 $(document).ready(function() {
     var aboutDiv = $(".about-div");
     var postContainer = $(".post-container");
-
+   
     getLoggedUser();
+    
+
     function getLoggedUser(){
         $.get("/user",function(data){
             // $(".logged-username").html(data.username);   
@@ -10,6 +12,7 @@ $(document).ready(function() {
             getPostData(data.id);
         });
     }
+
     
     function getUserInfo(id){
         var queryUrl = "/user/" + id;
@@ -82,30 +85,33 @@ $(document).ready(function() {
     var queryUrl = "/api/posts/user/" + id;
     $.get(queryUrl, function(data) {
     
-     var postDiv =$("<div>").addClass("post-div mb-4");
-     var singlePostDiv = $("<div>").addClass("single-post");
-     var postTitle = $("<div>").addClass("post-title");
-
-      if (data.length<1) {
-         console.log("no posts");
-         postTitle.html("No posts to display. Click on 'Make a post' icon on menu to create a new post.");
-         postContainer.append(postDiv.append(singlePostDiv.append(postTitle)));
-        
-      }
-      else{
-          console.log(data);
-          postContainer.empty();
-          var postsToAdd = [];
-          for(var i=0; i<data.length;i++){
-            postsToAdd.push(createNewRow(data[i]));
-          }
-          postContainer.append(postsToAdd);
-          
-      }
+        showPosts(data);
      
     });
   }
 
+  function showPosts(data){
+    postContainer.empty();
+    var postDiv =$("<div>").addClass("post-div mb-4");
+    var singlePostDiv = $("<div>").addClass("single-post");
+    var postTitle = $("<div>").addClass("post-title");
+   
+     if (data.length<1) {
+        console.log("no posts");
+        postTitle.html("No posts to display.");
+        postContainer.append(postDiv.append(singlePostDiv.append(postTitle)));
+       
+     }
+     else{
+         console.log(data);
+         var postsToAdd = [];
+         for(var i=0; i<data.length;i++){
+           postsToAdd.push(createNewRow(data[i]));
+         }
+         postContainer.append(postsToAdd);
+         
+     }
+  }
   function createNewRow(post){
        
      var postDiv =$("<div>").addClass("post-div mb-4");
@@ -118,6 +124,34 @@ $(document).ready(function() {
      postDiv.append(singlePostDiv.append(postTitle,additionalDiv));
      return postDiv;
   }
+
+  $("#post-search-btn").on("click",function(){
+    $.get("/user",function(data){
+        var id = data.id;
+        getPostsByTitleAndId(id);
+    });
+
+  });
+
+  function getPostsByTitleAndId(id){
+    var title = $("#search-title").val();
+    console.log(title);
+    var queryUrl = "api/posts/user/" + id+"/title/"+title;
+    $.get(queryUrl, function(data) {
+        showPosts(data);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 });
