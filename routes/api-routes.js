@@ -181,4 +181,19 @@ app.get("/api/posts/user/:id",function(req, res) {
     res.json(dbPost);
   });
 });
+
+app.get("/api/posts/user/:id/title/:title",function(req, res) {
+  db.Post.findAll({
+    where: {
+      title: {
+        $like: '%' + req.params.title + '%'
+      },
+      UserId: req.params.id
+    },
+    include: [db.Category]
+  }).then(function(dbPost) {
+    res.json(dbPost);
+  });
+});
+
 }
