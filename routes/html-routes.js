@@ -34,4 +34,10 @@ module.exports = function(app) {
   app.get("/dashboard", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
   });
+
+
+app.get("/category", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/html/category-manager.html"));
+});
+
 };
