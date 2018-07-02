@@ -4,15 +4,17 @@ module.exports = function(app) {
 
   var sessionChecker = (req, res, next) => {
     if (req.session.user && req.cookies.token) {
-        res.redirect('/dashboard');
+        next();
     } else {
         res.redirect("/signup");
     }    
   };
 
+
+
     app.post("/",(req, res) => {
-    var email = req.body.email,
-        password = req.body.password;
+      var email = req.body.email,
+          password = req.body.password;
 
     db.User.findOne({ where: { email: email } }).then(function (user) {
         console.log(user);
@@ -75,7 +77,7 @@ module.exports = function(app) {
       });
    });
   
-  app.post("/api/posts", sessionChecker, function(req, res) {
+  app.post("/api/posts", function(req, res) {
     console.log("Received data", req.files);
     var file = req.files.uploaded_image;
 		var img_name=file.name;
@@ -102,14 +104,14 @@ module.exports = function(app) {
 
 
 
- app.get("/api/posts", sessionChecker, function(req, res) {
+ app.get("/api/posts", function(req, res) {
   db.Post.findAll({include: [ db.Category ] },{})
     .then(function(dbPost) {
     res.json(dbPost);
   });
 });
 
-app.get("/api/posts/:id", sessionChecker, function(req, res) {
+app.get("/api/posts/:id", function(req, res) {
   db.Post.findOne({
     where: {
       id: req.params.id
@@ -119,6 +121,5 @@ app.get("/api/posts/:id", sessionChecker, function(req, res) {
     res.json(dbPost);
   });
 });
-
 
 }
