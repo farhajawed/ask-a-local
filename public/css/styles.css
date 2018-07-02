@@ -60,7 +60,8 @@ body{
 
 /* dashboard */
 .profile-div{
-    background:darkslateblue;
+    /* background:darkslateblue; */
+    background: #36465d;
     color:beige;
     border:2px ridge #db6f57;; 
 }
@@ -72,8 +73,7 @@ body{
 
 
 .single-post{
-    background:snow;
-    border:2px ridge darkslateblue;
+    background:seashell;
     padding:10px;
     border-radius:10px;
     margin-bottom:5px;
@@ -101,7 +101,11 @@ body{
 }
 
 .form-control{
-    border:1px solid #db6f57 !important;
+    background: rgba(0,0,0,.13) !important;
+}
+
+.custom{
+    background: whitesmoke !important;
 }
 
 .view-edit-btn{
@@ -169,3 +173,12 @@ body{
     cursor: pointer;
     text-decoration: underline;
 }
+
+.btn-publish{
+    background:darkcyan;
+    color:white;
+    padding:10px;
+    border-radius:15px;
+    /* margin: 0 auto; */
+}
+
