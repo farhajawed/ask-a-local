@@ -75,23 +75,23 @@
                 </div>
              </div>  
              <div class="right"> 
-                <div class="row">
-                    <div class="col-md-12 mt-3">
-                    <form id="new-post" action="/api/posts" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="text" class="form-control custom mb-2" id="title" name="title" placeholder="Post title....">
-                            <textarea class="form-control custom mb-2" rows="10" id="body" name="body" placeholder="Share your thoughts..."></textarea>
-                            <select class="custom-select mb-2" id="category" name="category">
-                            </select>
-                            <input class="form-control custom" type="file" name="uploaded_image" accept="" />
+              <form id="new-post" action="/api/posts" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control custom mb-2" id="title" name="title" placeholder="Post title....">
+                                <textarea class="form-control custom mb-2" rows="10" id="body" name="body" placeholder="Share your thoughts..."></textarea>
+                                <select class="custom-select mb-2" id="category" name="category">
+                                </select>
+                                <input class="form-control custom" type="file" name="uploaded_image" accept="" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-publish submit btn-lg">Publish</button>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-publish submit btn-lg">Publish</button>
+                        </div>
                     </div>
-                </div>
                </form>
             </div>
           </div> 
