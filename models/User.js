@@ -7,13 +7,19 @@ module.exports =function (sequelize,DataTypes) {
 
     email: {
         type: DataTypes.STRING,
-        unique: true,
-        allowNull:false
+        allowNull:false,
+        unique: {
+            args: true,
+            msg: 'Email address already in use!'
+        }
     },
     username: {
         type: DataTypes.STRING,
-        unique: true,
-        allowNull:false
+        allowNull:false,
+        unique: {
+            args: true,
+            msg: 'Username already in use!'
+        }
     },
     password: {
         type: DataTypes.STRING,
@@ -23,26 +29,15 @@ module.exports =function (sequelize,DataTypes) {
     firstName:DataTypes.STRING,
     lastName:DataTypes.STRING,
     bio: DataTypes.TEXT,
+    token: DataTypes.STRING,
+    location: DataTypes.STRING,
     image:
-        {
-            type:DataTypes.STRING
+    {
+            type:DataTypes.STRING,
+            defaultValue:"default.png"
     }
     
-    // , {
-    //     // hooks: {
-    //     //   beforeCreate: (user) => {
-    //     //     const salt = bcrypt.genSaltSync();
-    //     //     user.password = bcrypt.hashSync(user.password, salt);
-    //     //   }
-    //     // },
-    //     instanceMethods: {
-    //       validPassword: function(password) {
-    //         return bcrypt.compareSync(password, this.password);
-    //       }
-    //     }    
     });
-
-
     User.associate = function (models) {
         models.User.hasMany(models.Comment, {
             onDelete: "cascade"
@@ -52,6 +47,5 @@ module.exports =function (sequelize,DataTypes) {
             onDelete: "cascade"
         });
     };
-    return User;
-
+return User;
 }

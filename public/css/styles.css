@@ -1,14 +1,194 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    background:beige;
+    background:#36465d;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#212529;
 }
 
-.img-style{
-   width:800px;
+
+.navbar-light{
+    background: #36465d !important;
+    border-bottom:2px solid #727e8e;
+
 }
 
-.card{
-    display:inline-block;
+.navbar-brand{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white !important;
+}
+.btn-search{
+    background-color: #db6f57;;
+    /* border:2px solid rgb(94, 154, 189); */
+}
+
+/* as the navbar images were not aligning properly */
+.nav-link{
+    padding:0;
+}
+
+.fa-search{
+    color:white;
+}
+
+.sign-out,.logged-username{
+    color: white !important;
+    font-weight: bold;
+}
+.logged-username{
+    border-right:2px ridge #db6f57;;
+}
+
+.btn-search:hover{
+    background-color: orange !important;
+    cursor: pointer;
+}
+
+.fa-globe-americas,.fa-home{
+    font-size: 32px;
+    color: black;
+}
+.fa-globe-americas:hover,.fa-home:hover,.sign-out:hover,.logged-username:hover{
+    color: orange !important;
+    cursor: pointer; 
+}
+
+
+/* dashboard */
+.profile-div{
+    /* background:darkslateblue; */
+    background: #36465d;
+    color:beige;
+    border:2px ridge #db6f57;; 
+}
+
+.name-style{
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+
+.single-post{
+    background:seashell;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:5px;
+}
+
+
+.make-post-btn{
+    
+    margin-bottom: 2px; 
+    background: darkslateblue;
+    padding-left:30px;
+    border:1px ridge #db6f57;;
+    border-radius: 10px;
+}
+
+.make-post-div{
+    background: #36465d;;
+    border:0px;   
+}
+.div-header{
+    color:#db6f57;;
+    font-size:20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;  
+}
+
+.form-control{
+    background: rgba(0,0,0,.13) !important;
+}
+
+.custom{
+    background: whitesmoke !important;
+}
+
+.view-edit-btn{
+    color:darkslateblue;
+    font-weight: bold;
+}
+
+.edit-about:hover{
+    color:orange;
+    cursor: pointer;
+}
+
+.view-edit-btn{
+    font-size: 23px;
+}
+
+.view-btn:hover,.edit-btn:hover{
+  color: slateblue;
+  cursor: pointer;
+}
+
+.make-post-btn:hover{
+   
+    color: orange;
+    cursor: pointer;
+}
+
+.bio{
+    font-style: italic;
+    color:#db6f57;
+}
+
+.post{
+    background: darkslateblue;
+    border-radius:10px;
+    padding:20px;
+}
+
+.post-div{
+   background: #727e8e;
+   padding:20px;
+   border-radius:10px;
+   color: black;
+}
+
+.header-post{
+    font-size:20px;
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    background: #db6f57;
+    border-radius: 20px;
+    padding:10px;
+}
+
+.additional-div{
+   font-style: italic;
+   color:#db6f57;
+}
+
+
+.post-title:hover{
+    color: #36465d;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn-publish{
+    background:darkcyan;
+    color:white;
+    padding:10px;
+    padding-left:20px;
+    padding-right: 20px;
+    border-radius:15px;
+    /* margin: 0 auto; */
+}
+
+
+.right{
+    background: rgba(0,0,0,.13) !important;
+    border-radius:10px;
+    padding:30px;
+}
+
+.post-title-anchor{
+    color: black;
 }
