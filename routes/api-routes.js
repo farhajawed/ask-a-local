@@ -94,7 +94,7 @@ app.get("/api/categories",auth,function(req, res) {
       .then(function(result) {
         res.json(result);
       });
-   });
+});
   
    //need to refactor this function
    app.post("/api/posts", function(req, res) {
@@ -152,8 +152,26 @@ app.post("/update/profile", function(req, res) {
 }); 
 
 app.get("/api/posts", auth,function(req, res) {
-  db.Post.findAll({include: [ db.Category ] },{})
+  db.Post.findAll({include: [ db.Category ] },{order: [['createdAt', 'DESC']]})
     .then(function(dbPost) {
+    res.json(dbPost);
+  });
+});
+
+app.get("api/posts/:postId/comments", auth, function(req, res){
+  var postId = req.params.postId
+  db.Commments.findAll({
+    where: {
+      postId: postId
+    }
+  }).then(function(results){
+    res.json(results);
+  })
+});
+
+app.get("/api/post/category/:category", auth, (req, res)=> {
+  var category = req.params.category;
+  db.Post.findAll({where: {category: category}},{order: [['createdAt', 'DESC']]}).then((dbPost)=> {
     res.json(dbPost);
   });
 });
