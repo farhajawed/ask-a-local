@@ -4,26 +4,20 @@ $(document).ready(function() {
     var email = $("#email");
     var password = $("#password");
 
-
     loginForm.on("submit",handleLoginFormSubmit);
 
-    //success message on logout
-    $("#logout-msg").hide();  
-    $("#unauthorized-msg").hide();
-    $("#false-msg").hide();
-    $("#signup-success").hide();
     var url = window.location.search;
     if (url.indexOf("?msg=success") !== -1) {
-        $("#logout-msg").show();
+        $("#logout-msg").addClass("alert alert-success").append("You are successfully logged out!");
     }
     else if (url.indexOf("?msg=false") !== -1) {
-        $("#false-msg").show();
+        $("#false-msg").addClass("alert alert-danger").append("Invalid username or password");
     }
     else if(url.indexOf("?msg=unauthorized") !== -1) {
-        $("#unauthorized-msg").show();
+        $("#unauthorized-msg").addClass("alert alert-danger").append("Please log in or sign up first.");
     }
     else if(url.indexOf("?signup=success") !== -1) {
-        $("#signup-success").show();
+        $("#signup-success").addClass("alert alert-success").append("Registration successful! Please log in.");
     }
    ; 
     
