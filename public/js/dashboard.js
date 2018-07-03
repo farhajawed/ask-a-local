@@ -42,10 +42,8 @@ $(document).ready(function() {
         // image
         $(".profile-image").attr("src","/images/upload_images/"+user.image);
       
-
         //show edit button only if logged in user visits her own dashboard
-        if(logged === true){
-          
+        if(logged === true){ 
             console.log(user);
             var editIcon = $("<i>").addClass("far fa-edit edit-about");
             editIcon.attr("data-toggle","modal");
@@ -85,10 +83,7 @@ $(document).ready(function() {
         var text = " Member Since : "+dateFormat(randomDate,"MM/DD/YYYY");
         var memberP = $("<p>").append(img,text);
         aboutDiv.append(memberP);
-        //total posts
-        // var img = $("<img>").attr("src","/images/post.png");
-        // var text = "Total Posts: 0";
-        // var postCount = $("<p>").append(img,text);
+       
         if(logged === true){
              $(".edit-about").on("click",populateData);
         }
