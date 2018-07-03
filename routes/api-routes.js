@@ -171,6 +171,9 @@ app.get("/api/posts/:id", auth,function(req, res) {
 
 app.get("/api/posts/user/:id",function(req, res) {
   db.Post.findAll({
+    order: [
+          ['createdAt','DESC']
+    ],
     where: {
       UserId: req.params.id
     },
