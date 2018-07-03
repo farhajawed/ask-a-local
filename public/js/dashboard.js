@@ -1,16 +1,31 @@
 $(document).ready(function() {
+    var url = window.location.href;
+    
+      $.get("/user",function(data){
+        if (url.indexOf("?user_id=") !== -1) {
+            var id = url.split("=")[1];
+            if(id === data.id){
+                logged = true;
+                getDashboard(data.id);
+            }
+            else{
+                logged = false;
+                getDashboard(id);
+            }
+        }
+        else{
+            logged = true;
+            getDashboard(data.id);
+        }
+    });
+
     var aboutDiv = $(".about-div");
     var postContainer = $(".post-container");
    
-    getLoggedUser();
-    
-
-    function getLoggedUser(){
-        $.get("/user",function(data){
-            getUserInfo(data.id);
-            //need to move it somewhere
-            getPostData(data.id);
-        });
+   
+    function getDashboard(id){
+        getUserInfo(id);
+        getPostData(id); 
     }
 
     
@@ -23,14 +38,26 @@ $(document).ready(function() {
     
 
     function showAboutSection(user){
-        $(".edit-about").data("user",user);
+      
         // image
         $(".profile-image").attr("src","/images/upload_images/"+user.image);
-        
+      
+
+        //show edit button only if logged in user visits her own dashboard
+        if(logged === true){
+          
+            console.log(user);
+            var editIcon = $("<i>").addClass("far fa-edit edit-about");
+            editIcon.attr("data-toggle","modal");
+            editIcon.attr("data-target","#exampleModal");
+            editIcon.data("user",user);
+            $(".div-header").append(editIcon);    
+        }
+      
         if(user.firstName && user.lastName){
-        var p = $("<p>").addClass("text-center name-style");
-        var fullName = p.html(user.firstName+" "+user.lastName);
-        aboutDiv.append(fullName);
+            var p = $("<p>").addClass("text-center name-style");
+            var fullName = p.html(user.firstName+" "+user.lastName);
+            aboutDiv.append(fullName);
         }
         //bio
         if(user.bio){
@@ -62,7 +89,9 @@ $(document).ready(function() {
         // var img = $("<img>").attr("src","/images/post.png");
         // var text = "Total Posts: 0";
         // var postCount = $("<p>").append(img,text);
-        $(".edit-about").on("click",populateData);
+        if(logged === true){
+             $(".edit-about").on("click",populateData);
+        }
     };
 
     function dateFormat(randomDate,form){
@@ -73,6 +102,7 @@ $(document).ready(function() {
     }
 
     function populateData(){
+        console.log($(this).data("user").firstName);
         $("#firstName").val($(this).data("user").firstName);
         $("#lastName").val($(this).data("user").lastName);
         $("#location").val($(this).data("user").location);
