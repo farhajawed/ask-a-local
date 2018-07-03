@@ -25,14 +25,19 @@ $(document).ready(function() {
                     "<div class='card'>" +
                         "<img class='card-img-top' src='#' alt='Card image'>" +
                         "<div class='card-body'>" +
-                            "<h5 class='card-title'>" + username + "</h5>" +
-                            "<h6 class='card-subtitle mb-2 text-muted'>" + cardtitle + "</h6>" +
-                            "<p class='card-text'>" + body + "</p>" +
+                            "<h5 class='card-title'>" + data.username + "</h5>" +
+                            "<h6 class='card-subtitle mb-2 text-muted'>" + data.title + "</h6>" +
+                            "<p class='card-text'>" + data.body + "</p>" +
                         "</div>" + 
                     "</div>")
-                    $.get("api/posts/" + + "/comments", function(data){
+                    var postId = data.postId;
+                    $.get("api/posts/" + postId + "/comments", function(data){
                         console.log(data);
+                        // if(){
 
+                        // }else{
+
+                        // }
                     });
                 }
             })
