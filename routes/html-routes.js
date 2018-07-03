@@ -61,5 +61,8 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
   });
 
+  app.get("/explorer", auth, function(req, res) {
+    res.sendfile(path.join(__dirname, "../public/html/global.html"));
+  })
 
 };
