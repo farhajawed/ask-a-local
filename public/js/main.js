@@ -19,8 +19,6 @@ $(document).ready(function() {
         $.get("/user",function(data){
             $(".logged-username").html(data.username);  
             $(".logged-username").attr("data-userId",data.id);
-            console.log( $(".logged-username").attr("data-userId"));
-            // $("#email").html(data.email); 
         })
     }
 
