@@ -1,6 +1,8 @@
 var db = require("../models");
 
 module.exports = function(app) {
+
+  
   // Find all categories and return them to the user with res.json
   app.get("/api/category", function(req, res) {
     db.Category.findAll({
@@ -16,7 +18,7 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include:[db.Post]
+      
     }).then(function(dbCategory) {
       res.json(dbCategory);
     });
@@ -47,7 +49,9 @@ module.exports = function(app) {
            
           );
         })
-        .then(function(dbCategory) {
+        .then(function(req, res) {
+          req.body.Category.push(req.body);
+          res.json("api/category");
           res.json("/category");
         });
     

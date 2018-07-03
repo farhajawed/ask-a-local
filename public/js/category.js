@@ -1,47 +1,53 @@
 $(document).ready(function() {
     // Getting references to the name input and category container, as well as the table body
-    var nameInput = $("#category-name");
-    var categoryList = $("tbody");
-    var categoryContainer = $(".category-container");
+    var categoryInput = $("#category-name");
+    var createdList = $("#createdSection");
+    var updatedList = $("#updatedSection");
+    var deletedList = $("#deletedSection");
+
+ 
     // Adding event listeners to the form to create a new object, and the button to delete
     // a category
-    $(document).on("submit", "#category-form", handleCategoryFormSubmit);
-    $(document).on("click", ".delete-category", handleDeleteButtonPress);
+    $(document).on("create", ".category-form", createCategory);
+    $(document).on("update", ".category-form", updateCategory);
+    $(document).on("delete", ".category-form", deleteCategory);
   
-    // Getting the initial list of categories
-    getCategories();
-  
-    // A function to handle what happens when the form is submitted to create a new category
-    function handleCategoryFormSubmit(event) {
+    var categoryName= {
+      dbCategory:name.val().trim()};
+
+    function createCategory (event) {
       event.preventDefault();
-      // Don't do anything if the name fields hasn't been filled out
-      if (!nameInput.val().trim()) {
-        return;
-      }
-      // Calling the insert categgory function and passing in the value of the name input
-      // insertCategory({
-      //   name: nameInput
-      //     .val()
-      //     .trim()
-      // });
-
-      var categoryName= {
-        dbCategory:name.val().trim(),
-      };
-      insertCategory(categoryName);
-    }
-  
-    // A function for creating a catgeory. Calls getcategories upon completion
-    function insertCategory(categoryName) {
-      console.log(name);
-      $.post("/api/category", categoryName,function(getCategories){
-
+      
+      if (categoryInput==="") {
+        categoryInput==="".push(categoryName);
+//update api with new category the append 
+      $.post("/api/category", categoryName,function(data){
+        console.log(data);
+        res.json(data);
+        createdList.append("<ul>" + data)
       })
+      }
+      else{ 
+        updateCategory();
        
-    
-  
+      }
+    }
+       function updateCategory(){
+        
+       if( categoryInput=== categoryName)
+        $.ajax("/api/category" + categoryName, {
+          type:"PUT",
+          data:categoryInput
+        }).then(
+          function(){
+            console.log(categoryInput)
+          }
+        )
+       }
+      
+  //////////////////////////
     // Function for creating a new list row for categories
-  function createCategoryRow(dbCategory) {
+ /* function (dbCategory) {
     var newTr = $("<tr>");
     newTr.data("category", dbCategory);
     newTr.append("<td>" + dbCategory+ "</td>");
@@ -94,6 +100,6 @@ $(document).ready(function() {
         url: "/api/category/" + id
       })
         .then(getCategories);
-    }
+    }*/
   });
   
