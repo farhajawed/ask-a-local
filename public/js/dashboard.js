@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var url = window.location.href;
-    
+
       $.get("/user",function(data){
         if (url.indexOf("?user_id=") !== -1) {
             var id = url.split("=")[1];

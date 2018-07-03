@@ -1,8 +1,15 @@
 $(document).ready(function () {
 
+  /*
+    if logged in user id  === post creator id
+    include edit buttons
+  */
+
     var url = window.location.href;
+ 
   
     if (url.indexOf("?post_id=") !== -1) {
+      console.log("99999999999999999999999999");
       var postId = url.split("=")[1];
       getPostData(postId);
     }
@@ -53,9 +60,25 @@ $(document).ready(function () {
           authorAnchor.addClass("author-anchor");
           authorAnchor.append(data.username);
           $("#post-author").append(authorAnchor);
-        }
+          
+          var loggedUserId= $(".logged-username").attr("data-userid");
+         
+          if(data.id == loggedUserId){
+            ////edit buttons
+            var editButtonContainer = $(".edit-buttons");
+            var editButton = $("<button>").addClass("btn btn-info");
+            var editIcon = $("<i>").addClass("far fa-edit");
+            editButton.append(editIcon)
+          
+
+            var deleteButton = $("<button>").addClass("btn btn-danger ml-2");
+            var deleteIcon = $("<i>").addClass("far fa-trash-alt");
+            deleteButton.append(deleteIcon);
+
+            editButtonContainer.append(editButton, deleteButton);
+          }
+         
+         }
       })
     }
-  
-  
   });
