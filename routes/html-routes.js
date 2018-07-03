@@ -65,4 +65,7 @@ module.exports = function(app) {
     res.sendfile(path.join(__dirname, "../public/html/global.html"));
   })
 
+  app.get("/question", auth, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/QA.html"));
+  });
 };

@@ -2,7 +2,11 @@
   "development": {
     "username": "root",
     "password": "root",
+<<<<<<< HEAD
     "port": 3305,
+=======
+    "port": 8889,
+>>>>>>> dropdown-continued
     "database": "askLocalDb",
     "host": "127.0.0.1",
     "dialect": "mysql"
