@@ -22,9 +22,9 @@ module.exports = function(sequelize,DataTypes) {
         { name: 'Food'},
         { name: 'Fashion'}
       ]).then(() => {
-        return User.findAll();
-      }).then(users => {
-        console.log(users) // ... in order to get the array of categories
+        return Category.findAll();
+      }).then(result => {
+        console.log(result) // ... in order to get the array of categories
       })
     
     }
