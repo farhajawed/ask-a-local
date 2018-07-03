@@ -3,10 +3,14 @@
     "username": "root",
     "password": "root",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "port": 3305,
 =======
     "port": 8889,
 >>>>>>> dropdown-continued
+=======
+    "port": 8889,
+>>>>>>> category-manager
     "database": "askLocalDb",
     "host": "127.0.0.1",
     "dialect": "mysql"

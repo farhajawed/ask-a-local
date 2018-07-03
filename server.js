@@ -37,6 +37,7 @@ app.use(fileUpload());
 // =============================================================
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
+require("./routes/category-api-routes.js")(app);
 
 
 
