@@ -44,10 +44,15 @@ $(document).ready(function () {
       var queryUrl = "/user/" + id;
       $.get(queryUrl, function (data) {
         if (data) {
+          var anchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
           var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
           img.addClass("rounded-circle img-fluid post-creator-image");
-          $("#post-author-img").append(img);
-          $("#post-author").append(data.username);
+          anchor.append(img);
+          $("#post-author-img").append(anchor);
+          var authorAnchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
+          authorAnchor.addClass("author-anchor");
+          authorAnchor.append(data.username);
+          $("#post-author").append(authorAnchor);
         }
       })
     }

@@ -197,3 +197,12 @@ app.get("/api/posts/user/:id",function(req, res) {
     });
   });
 }
+
+//   app.get("/api/count_posts",auth,function(req,res){
+//     db.Post.count({
+//       attributes: ['UserId'],
+//       group: 'UserId'
+//     }).then(function(dbCount){
+//       res.json(dbCount);
+//     });
+//   })
