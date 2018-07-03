@@ -22,7 +22,7 @@ $(document).ready(function() {
             var card;
             
             for(let i = 0; i < data.length; i++){
-
+                var spot = $("<div class='globalposts'>");
                 $.get("/user/" + data[i].UserId, function(result){
                     username = result.username;
                     userimage = result.image;
@@ -41,10 +41,15 @@ $(document).ready(function() {
                             "<p class='card-text'>" + data[i].body + "</p>" +
                         "</div>" + 
                     "</div>";
-                
+                    spot.append(card);
 
-                    $(".catPosts").append(card);
                 })
+
+                $.get("api/posts/" + data[i].id + "/comments", function(result1){
+                    spot.append(JSON.stringify(result1));
+                });
+
+                $(".catPosts").append(spot);
             }
         })
     };
