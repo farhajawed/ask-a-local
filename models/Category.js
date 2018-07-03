@@ -16,6 +16,16 @@ module.exports = function(sequelize,DataTypes) {
             },
             onDelete: "cascade"
     });
+
+    Category.bulkCreate([
+        { name: 'Sports'},
+        { name: 'Food'},
+        { name: 'Fashion'}
+      ]).then(() => {
+        return User.findAll();
+      }).then(users => {
+        console.log(users) // ... in order to get the array of categories
+      })
     
     }
     return Category;
