@@ -38,7 +38,7 @@ $(document).ready(function () {
           img.addClass("img-fluid post-image img-thumbnail mt-3 mb-2");
           $("#post-image").append(img);
           $("#post-date").append(dateFormat(data.createdAt,"MM/DD/YYYY hh:mm:ss"));
-          getAuthorInfo(data.UserId);
+          getAuthorInfo(data.UserId,data);
         }
         else{
             window.location.href = "/dashboard";
@@ -46,7 +46,7 @@ $(document).ready(function () {
       });
     }
   
-    function getAuthorInfo(id) {
+    function getAuthorInfo(id,post) {
       var queryUrl = "/user/" + id;
       $.get(queryUrl, function (data) {
         if (data) {
@@ -65,12 +65,13 @@ $(document).ready(function () {
           if(data.id == loggedUserId){
             ////edit buttons
             var editButtonContainer = $(".edit-buttons");
-            var editButton = $("<button>").addClass("btn btn-info");
+            var editButton = $("<button>").addClass("btn btn-info edit-post");
             var editIcon = $("<i>").addClass("far fa-edit");
             editButton.append(editIcon)
           
 
-            var deleteButton = $("<button>").addClass("btn btn-danger ml-2");
+            var deleteButton = $("<button>").addClass("btn btn-danger ml-2 delete-post");
+            deleteButton.data("post",post);
             var deleteIcon = $("<i>").addClass("far fa-trash-alt");
             deleteButton.append(deleteIcon);
 
@@ -80,4 +81,15 @@ $(document).ready(function () {
          }
       })
     }
+
+    $(".delete-post").on("click",deletePost);
+
+    function deletePost(){
+      console.log("delete");
+    }
+
+    
+
+
+
   });

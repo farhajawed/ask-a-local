@@ -37,12 +37,12 @@ $(document).ready(function() {
                         "</div>" +
                         "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
                         "<div class='card-body'>" +
-                            "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].title + "</h6>" +
+                            "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
+                            "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
                         "</div>" + 
                     "</div>";
                 
-
                     $(".catPosts").append(card);
                 })
             }

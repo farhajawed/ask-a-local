@@ -8,6 +8,7 @@ $(document).ready(function() {
     getLoggedUser();
     function handleLogout(){
         $.get("/logout",function(data){
+            console.log("data"+data);
             if(data){
                 window.location.href = "/?msg="+data;     
             }
