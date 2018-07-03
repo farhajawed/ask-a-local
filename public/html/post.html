@@ -25,6 +25,13 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <title>Ask-A-Local: Dashboard</title>
 </head>
+<style>
+.card-block{
+   
+    padding-left:5%;
+    padding-right:5%;
+}
+</style>
 
 <body>
 
@@ -51,6 +58,11 @@
                         <img src="/images/post.png">
                     </a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/question" class="global" data-toggle="tooltip" data-placement="bottom" title="Make a Post">
+                            <img src="/images/icons8-faq_filled.png">
+                        </a>
+                    </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -64,13 +76,35 @@
     </nav>
 
    <!--single post-->
+  
+  
    <div class="container">
-        <div class="row">
-            <div class="col-md-2 left">
+    <div class="row">
+        <div class="col-md-3 left mt-5">
+                <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                          <div class="card-header" role="tab" id="headingOne">
+                            <h5 class="mb-0">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <span>How Posting Works <img src="/images/icons8-light_on.png"></span>
+                              </a>
+                            </h5>
+                          </div>
+                      
+                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-block">
+                                     <center><img src="/images/icons8-user_typing_using_typewriter.png" class="img-fluid" > </center>
+                                    <p id="author-bio">Share your thoughts on a recently explored venue, or undertaken venture. Remember to be descriptive and informative, this encourages  users to post experiences you might find useful when your a tourist.</p>
+                                
+                                </div>
+                            </div>
+                            </div>
             </div>
-            <div class="col-md-10">
+            </div>
+            
+            <div class="col-md-9">
               <div class="row">
-                <div class="col-md-2 offset-md-5 mb-2 mt-2">
+                <div class="col-md-2 offset-md-5 text-center mb-2 mt-2">
                    <div class="text-center header-post">New Post</div>
                 </div>
              </div>  
