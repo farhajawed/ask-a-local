@@ -9,8 +9,7 @@ $(document).ready(function() {
     signupForm.on("submit",handleSignupFormSubmit);
 
     
-     $("#signup-fail").hide();  
-   
+     
     
     function handleSignupFormSubmit(event){
         event.preventDefault();
@@ -33,13 +32,10 @@ $(document).ready(function() {
                 window.location.href = "/?signup=success";  
             }
            else{
-               $("#signup-fail").show();
                if(data.errors[0].message){
-                  $("#signup-fail").html(data.errors[0].message);
+                   $("#signup-fail").addClass("alert alert-danger").html(data.errors[0].message);
                } 
-           }        
-                   
+           }                        
         })
     }
-
 });

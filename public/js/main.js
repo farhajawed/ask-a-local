@@ -8,7 +8,6 @@ $(document).ready(function() {
     getLoggedUser();
     function handleLogout(){
         $.get("/logout",function(data){
-            console.log(data);
             if(data){
                 window.location.href = "/?msg="+data;     
             }
@@ -19,6 +18,8 @@ $(document).ready(function() {
     function getLoggedUser(){
         $.get("/user",function(data){
             $(".logged-username").html(data.username);  
+            $(".logged-username").attr("data-userId",data.id);
+            console.log( $(".logged-username").attr("data-userId"));
             // $("#email").html(data.email); 
         })
     }
