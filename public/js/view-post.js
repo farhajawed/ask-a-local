@@ -9,7 +9,6 @@ $(document).ready(function () {
  
   
     if (url.indexOf("?post_id=") !== -1) {
-      console.log("99999999999999999999999999");
       var postId = url.split("=")[1];
       getPostData(postId);
     }
@@ -17,7 +16,7 @@ $(document).ready(function () {
     // need to change it to global page
     else{
        // getPosts();
-       window.location.href = "/dashboard";
+       window.location.href = "/explorer";
     }
      
     function dateFormat(randomDate,form){
