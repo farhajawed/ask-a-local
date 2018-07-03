@@ -38,10 +38,7 @@ app.use(fileUpload());
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
-db.Category.destroy({
-  where: {cat: "cat"},
-  truncate: true
-});
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
