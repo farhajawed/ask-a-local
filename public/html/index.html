@@ -52,18 +52,13 @@
                     <div class="card-body">
                         <form id="login-form">
                             <div class="form-group">
-                                <div class="alert alert-success" id="logout-msg" role="alert">
-                                    You are successfully logged out!
-                                </div>
-                                <div class="alert alert-success" id="signup-success" role="alert">
-                                    Registration successful! Please log in.
-                                </div>
-                                <div class="alert alert-danger" id="false-msg" role="alert">
-                                    Invalid username or password
-                                </div>
-                                <div class="alert alert-danger" id="unauthorized-msg" role="alert">
-                                    Please log in or sign up first.
-                                </div>
+                                    
+                                <!-- feedback -->
+                                <div id="logout-msg" role="alert"></div>
+                                <div id="signup-success" role="alert"></div>
+                                <div id="false-msg" role="alert"></div>
+                                <div id="unauthorized-msg" role="alert"></div> 
+
                                 <label for="email">Email address</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
                             </div>
