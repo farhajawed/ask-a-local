@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed');
 
 body{
     margin:0;
@@ -13,7 +14,6 @@ body{
 .navbar-light{
     background: #36465d !important;
     border-bottom:2px solid #727e8e;
-
 }
 
 .navbar-brand{
@@ -21,12 +21,11 @@ body{
     font-weight: bold;
     color: white !important;
 }
+
 .btn-search{
     background-color: #db6f57;;
-    /* border:2px solid rgb(94, 154, 189); */
 }
 
-/* as the navbar images were not aligning properly */
 .nav-link{
     padding:0;
 }
@@ -44,7 +43,7 @@ body{
 }
 
 .btn-search:hover{
-    background-color: orange !important;
+    background-color:#56bc8a !important;
     cursor: pointer;
 }
 
@@ -53,17 +52,14 @@ body{
     color: black;
 }
 .fa-globe-americas:hover,.fa-home:hover,.sign-out:hover,.logged-username:hover{
-    color: orange !important;
+    color:#56bc8a !important;
     cursor: pointer; 
 }
 
-
 /* dashboard */
 .profile-div{
-    /* background:darkslateblue; */
-    background: #36465d;
+    background: rgba(0,0,0,.13) !important;
     color:beige;
-    border:2px ridge #db6f57;; 
 }
 
 .name-style{
@@ -73,28 +69,14 @@ body{
 
 
 .single-post{
-    background:seashell;
+    background: rgba(0,0,0,.13);
     padding:10px;
     border-radius:10px;
     margin-bottom:5px;
 }
 
-
-.make-post-btn{
-    
-    margin-bottom: 2px; 
-    background: darkslateblue;
-    padding-left:30px;
-    border:1px ridge #db6f57;;
-    border-radius: 10px;
-}
-
-.make-post-div{
-    background: #36465d;;
-    border:0px;   
-}
 .div-header{
-    color:#db6f57;;
+    color:#a77dc2;;
     font-size:20px;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;  
@@ -108,47 +90,32 @@ body{
     background: whitesmoke !important;
 }
 
-.view-edit-btn{
-    color:darkslateblue;
-    font-weight: bold;
-}
 
 .edit-about:hover{
-    color:orange;
+    color:#56bc8a;
     cursor: pointer;
 }
 
-.view-edit-btn{
-    font-size: 23px;
-}
-
-.view-btn:hover,.edit-btn:hover{
-  color: slateblue;
-  cursor: pointer;
-}
 
 .make-post-btn:hover{
    
-    color: orange;
+    color:#56bc8a;
     cursor: pointer;
 }
 
 .bio{
     font-style: italic;
-    color:#db6f57;
 }
 
 .post{
-    background: darkslateblue;
     border-radius:10px;
     padding:20px;
 }
 
 .post-div{
-   background: #727e8e;
+   background: rgba(0,0,0,.13) !important;
    padding:20px;
    border-radius:10px;
-   color: black;
 }
 
 .header-post{
@@ -165,13 +132,6 @@ body{
    color:#db6f57;
 }
 
-
-.post-title:hover{
-    color: #36465d;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 .btn-publish{
     background:darkcyan;
     color:white;
@@ -179,7 +139,6 @@ body{
     padding-left:20px;
     padding-right: 20px;
     border-radius:15px;
-    /* margin: 0 auto; */
 }
 
 
@@ -187,8 +146,48 @@ body{
     background: rgba(0,0,0,.13) !important;
     border-radius:10px;
     padding:30px;
+    padding-top:10px;
+    margin-bottom:10px;
 }
 
+
 .post-title-anchor{
-    color: black;
+    color: beige;
+    font-family: 'Encode Sans Condensed', sans-serif;
+    font-size: 18px;
+}
+
+.post-title-anchor:hover{
+    color:#56bc8a;
+    text-decoration:none;
+}
+
+/* view post css */
+
+.post-data-div{
+    background-color: gainsboro;
+    border: 1px solid gray;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top:10px;
+}
+.post-image{
+    max-height:400px;
+    border-radius: 5px;
+}
+
+#post-title{
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    color:beige;
+}
+
+#post-body{
+    font-size:16px;
+}
+
+.post-creator-image{
+    height: 120px;
+    max-height:100%;
 }
