@@ -1,1 +1,1 @@
-INSERT INTO categories (name) values ("Restaurant"),("Places"),("Shopping");
+INSERT INTO Categories (name) values ("Restaurant"),("Places"),("Shopping");
