@@ -9,7 +9,7 @@ $(document).ready(function () {
         option.attr("value", "default");
         option.attr("disabled", "disabled");
         option.attr("selected", "selected");
-        option.html("Select a category");
+        option.html("Select a category [Required]");
         categoryContainer.append(option);
         for (var i = 0; i < data.length; i++) {
           var option = $("<option>");

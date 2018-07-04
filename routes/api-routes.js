@@ -226,6 +226,20 @@ app.get("/api/posts/user/:id",function(req, res) {
       });
   })
 
+  // PUT route for updating posts
+  app.put("/api/posts/:id", function(req, res) {
+    var postId = req.params.id;
+    db.Post.update(req.body,
+      {
+        where: {
+          id: postId
+        }
+      })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
 }
 
 
