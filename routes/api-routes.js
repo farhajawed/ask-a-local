@@ -214,8 +214,22 @@ app.get("/api/posts/user/:id",function(req, res) {
       res.json(dbPost);
     });
   });
+
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  })
+
 }
 
+
+ 
 //   app.get("/api/count_posts",auth,function(req,res){
 //     db.Post.count({
 //       attributes: ['UserId'],

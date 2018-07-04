@@ -7,10 +7,6 @@ $(document).ready(function() {
 
 
     signupForm.on("submit",handleSignupFormSubmit);
-
-    
-     
-    
     function handleSignupFormSubmit(event){
         event.preventDefault();
         // Wont submit the post 
