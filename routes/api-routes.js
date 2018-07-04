@@ -158,6 +158,17 @@ app.get("/api/posts", auth,function(req, res) {
   });
 });
 
+app.post("api/post/:postId/comments/:body", auth, function(req, res){
+  db.Comments.create({
+    body: req.params.body,
+    UserId: req.session.user.id,
+    PostId: req.param.postId
+  }).then(function(data){
+    console.log(data);
+    res.json(data);
+  });
+});
+
 app.get("api/posts/:postId/comments", auth, function(req, res){
   var postId = req.params.postId
   db.Commments.findAll({

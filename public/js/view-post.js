@@ -11,6 +11,10 @@ $(document).ready(function () {
     if (url.indexOf("?post_id=") !== -1) {
       var postId = url.split("=")[1];
       getPostData(postId);
+      getCommentData(postId);
+
+      $(".submitcomment").on("click",createComment(postId));
+      
     }
     // If there's no postId we go to dashboard for now
     // need to change it to global page
@@ -24,6 +28,29 @@ $(document).ready(function () {
         var convertedDate = moment(randomDate, randomFormat);
         var modifiedDate = moment(convertedDate).format(form);
         return modifiedDate;
+    }
+
+    function getCommentData(id) {
+      var queryUrl = "api/posts/" + id + "/comments";
+      $.get(queryUrl, function(data){
+
+        for(let i = data.length; i > 0; i--){
+
+          var item = $("<ul class='comment-section'>");
+
+          $.get("/user/" + data[i].UserId, function(result){
+
+            let username = result.username;
+            let userimage = result.image;
+            console.log(result);
+            
+            item.append("<li class='comment'><div class='info'><a href='#'>" + username + "</a><span>4 hours ago</span></div><a class='avatar' href='#'><img src='/images/uplaod_images/" + userimage + "' width='35' alt='Profile Picture' title='" + username + "'</a><p>" + data[i].body + "</p></li>");
+
+          });
+
+          $(".write-new").append(item);
+        }
+      });
     }
 
     function getPostData(id) {
@@ -45,15 +72,26 @@ $(document).ready(function () {
         }
       });
     }
-  
+
+    function createComment(id){
+      var body = $("#commentbody").val();
+      var queryUrl = "api/post/" + id + "/comments/" + body;
+      $.post(queryUrl, function() {
+        console.log("Comment Submitted")
+      })
+    };
+
     function getAuthorInfo(id) {
       var queryUrl = "/user/" + id;
       $.get(queryUrl, function (data) {
         if (data) {
           var anchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
           var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
+          var img2 = $("<img>").attr("src", "/images/upload_images/" + data.image);
+          img2.attr("class","thumbnail");
           img.addClass("rounded-circle img-fluid post-creator-image");
           anchor.append(img);
+          $(".userCommentsubmit").prepend(img2);
           $("#post-author-img").append(anchor);
           var authorAnchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
           authorAnchor.addClass("author-anchor");
