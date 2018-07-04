@@ -9,7 +9,7 @@ $(document).ready(function () {
  
   
     if (url.indexOf("?post_id=") !== -1) {
-      var postId = url.split("=")[1];
+      postId = url.split("=")[1];
       getPostData(postId);
     }
     // If there's no postId we go to dashboard for now
@@ -63,8 +63,9 @@ $(document).ready(function () {
           var loggedUserId= $(".logged-username").attr("data-userid");
          
           if(data.id == loggedUserId){
-            ////edit buttons
+            //edit buttons
             var editButtonContainer = $(".edit-buttons");
+
             var editButton = $("<button>").addClass("btn btn-info edit-post");
             var editIcon = $("<i>").addClass("far fa-edit");
             editButton.append(editIcon)
@@ -75,21 +76,26 @@ $(document).ready(function () {
             var deleteIcon = $("<i>").addClass("far fa-trash-alt");
             deleteButton.append(deleteIcon);
 
-            editButtonContainer.append(editButton, deleteButton);
-          }
-         
+            editButtonContainer.append(editButton, deleteButton);    
+            // editButtonContainer.on("click",editButton,editPost);
+            editButtonContainer.on("click",deleteButton,deletePost);
+          }    
          }
       })
     }
 
-    $(".delete-post").on("click",deletePost);
 
-    function deletePost(){
-      console.log("delete");
-    }
+  function deletePost() {
 
-    
+    console.log(postId);
+   
+    $.ajax({
+      method: "DELETE",
+      url: "/api/posts/" + postId
+    })
+      .then(function() {
+        window.location.href = "/dashboard";
+      });
+  }
 
-
-
-  });
+});
