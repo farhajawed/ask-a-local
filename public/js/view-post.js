@@ -12,10 +12,7 @@ $(document).ready(function () {
       postId = url.split("=")[1];
       getPostData(postId);
     }
-    // If there's no postId we go to dashboard for now
-    // need to change it to global page
     else{
-       // getPosts();
        window.location.href = "/explorer";
     }
      
@@ -60,8 +57,9 @@ $(document).ready(function () {
           authorAnchor.addClass("author-anchor");
           authorAnchor.append(data.username);
           $("#post-author").append(authorAnchor);
-          
-          var loggedUserId= $(".logged-username").attr("data-userid");
+
+          $.get("/user",function(user){
+           loggedUserId= user.id;
          
           if(data.id == loggedUserId){
             //edit buttons
@@ -78,18 +76,15 @@ $(document).ready(function () {
             deleteButton.append(deleteIcon);
 
             editButtonContainer.append(editButton, deleteButton);    
-            // editButtonContainer.on("click",editButton,editPost);
-            editButtonContainer.on("click",deleteButton,deletePost);
-          }    
-         }
+            editButtonContainer.on("click",".edit-post",editPost);
+            editButtonContainer.on("click",".delete-post",deletePost);
+          }});   
+        }
       })
     }
 
 
   function deletePost() {
-
-    console.log(postId);
-   
     $.ajax({
       method: "DELETE",
       url: "/api/posts/" + postId
@@ -97,6 +92,12 @@ $(document).ready(function () {
       .then(function() {
         window.location.href = "/dashboard";
       });
+  }
+
+  
+  function editPost(){
+    window.location.href = "/post?edit_post_id=" + postId;
+    
   }
 
 });

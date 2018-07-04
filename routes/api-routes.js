@@ -16,7 +16,7 @@ var auth = function(req, res, next) {
 app.post('/', function (req, res) {
   db.User.findOne({
     where: {
-      email: req.body.email
+      username: req.body.username
     }
   })
   .then(function(dbPost) {
@@ -45,7 +45,7 @@ app.put("/", function(req, res) {
     }).then(function(result) {
         res.cookie("token",randomToken);
         req.session.user = req.body;
-        req.session.user.email= req.body.email;
+        req.session.user.username= req.body.username;
         req.session.user.id = req.body.id;
         res.json(result);
     });  
@@ -68,7 +68,7 @@ app.post("/signup",function(req,res){
 // Logout endpoint
 app.get('/logout',auth,function (req, res) {
   res.clearCookie("token");
-  res.send("success");
+  res.json("success");
   req.session.destroy();
 
 });
@@ -201,6 +201,18 @@ app.get("/api/posts/user/:id",function(req, res) {
   });
 });
 
+app.get("/api/posts/:postId/user/:id",function(req, res) {
+  db.Post.findOne({
+    where: {
+      UserId: req.params.id,
+      id:req.params.postId
+    }
+  }).then(function(dbPost) {
+    res.json(dbPost);
+  });
+});
+
+
   app.get("/api/posts/user/:id/title/:title",function(req, res) {
     db.Post.findAll({
       where: {
@@ -229,13 +241,17 @@ app.get("/api/posts/user/:id",function(req, res) {
   // PUT route for updating posts
   app.put("/api/posts/:id", function(req, res) {
     var postId = req.params.id;
-    db.Post.update(req.body,
-      {
+    db.Post.update({
+        body:req.body.body,
+        CategoryId:req.body.category
+    },
+    {
         where: {
           id: postId
         }
       })
       .then(function(dbPost) {
+        console.log(dbPost);
         res.json(dbPost);
       });
   });
