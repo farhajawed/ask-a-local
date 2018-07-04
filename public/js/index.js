@@ -1,7 +1,7 @@
 $(document).ready(function() {
      
     var loginForm = $("#login-form");
-    var email = $("#email");
+    var username = $("#username");
     var password = $("#password");
 
     loginForm.on("submit",handleLoginFormSubmit);
@@ -24,12 +24,12 @@ $(document).ready(function() {
     function handleLoginFormSubmit(event){
         event.preventDefault();
         // Wont submit the post 
-        if(!email.val().trim() || !password.val().trim()){
+        if(!username.val().trim() || !password.val().trim()){
             return;
         }
 
         var loginCredentials = {
-            email : email.val().trim(),
+            username : username.val().trim(),
             password : password.val().trim()
         };
         submitLoginForm(loginCredentials);            
@@ -37,7 +37,6 @@ $(document).ready(function() {
     
     function submitLoginForm(loginCredentials){
         $.post("/",loginCredentials,function(data){
-            console.log(data);
             if(!data){
                 window.location.href = "/?msg=false";  
             }

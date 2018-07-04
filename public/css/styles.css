@@ -191,6 +191,7 @@ body{
     padding: 20px;
     border-radius: 5px;
     margin-top:10px;
+    word-wrap: break-word;
 }
 .post-image{
     max-height:400px;
@@ -221,3 +222,12 @@ body{
 .author-anchor{
     color:#db6f57;
 }
+
+input:disabled{
+    background: #36465d !important;
+}
+
+.r{
+    color:red;
+}
+

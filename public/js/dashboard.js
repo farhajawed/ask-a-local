@@ -46,7 +46,6 @@ $(document).ready(function() {
       
         //show edit button only if logged in user visits her own dashboard
         if(logged === true){ 
-            console.log(user);
             var editButton = $("<button>").addClass("btn btn-info edit-about");
             var editIcon = $("<i>").addClass("far fa-edit");
             editButton.append(editIcon);
@@ -101,7 +100,6 @@ $(document).ready(function() {
     }
 
     function populateData(){
-        console.log($(this).data("user").firstName);
         $("#firstName").val($(this).data("user").firstName);
         $("#lastName").val($(this).data("user").lastName);
         $("#location").val($(this).data("user").location);
@@ -125,13 +123,11 @@ $(document).ready(function() {
     var postTitle = $("<div>").addClass("post-title-anchor");
    
      if (data.length<1) {
-        console.log("no posts");
         postTitle.html("No posts to display.");
         postContainer.append(postDiv.append(postTitle));
        
      }
      else{
-         console.log(data);
          var postsToAdd = [];
          for(var i=0; i<data.length;i++){
            postsToAdd.push(createNewRow(data[i]));
