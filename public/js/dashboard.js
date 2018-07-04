@@ -138,6 +138,11 @@ $(document).ready(function() {
 
   function createNewRow(post){
      var postDiv =$("<div>").addClass("post-div mb-4");
+     if(logged===true){
+        var iconLink = $("<a>").attr("href","../view-post?post_id="+post.id);
+        iconLink.append($("<i>").addClass("far fa-edit mr-3 text-success"));
+        postDiv.append(iconLink);
+     }
      var postTitle = $("<div>").addClass("post-title");
      var anchor = $("<a>").attr("href","../view-post?post_id="+post.id);
      anchor.addClass("post-title-anchor")
