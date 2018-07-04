@@ -6,17 +6,19 @@ $(document).ready(function() {
             var id = url.split("=")[1];
             if(id === data.id){
                 logged = true;
-                getDashboard(data.id);
+                userId = data.id;
+               
             }
             else{
                 logged = false;
-                getDashboard(id);
+                userId = id;
             }
         }
         else{
             logged = true;
-            getDashboard(data.id);
+            userId = data.id;
         }
+        getDashboard(userId);
     });
 
     var aboutDiv = $(".about-div");
@@ -45,11 +47,13 @@ $(document).ready(function() {
         //show edit button only if logged in user visits her own dashboard
         if(logged === true){ 
             console.log(user);
-            var editIcon = $("<i>").addClass("far fa-edit edit-about");
-            editIcon.attr("data-toggle","modal");
-            editIcon.attr("data-target","#exampleModal");
-            editIcon.data("user",user);
-            $(".div-header").append(editIcon);    
+            var editButton = $("<button>").addClass("btn btn-info edit-about");
+            var editIcon = $("<i>").addClass("far fa-edit");
+            editButton.append(editIcon);
+            editButton.attr("data-toggle","modal");
+            editButton.attr("data-target","#exampleModal");
+            editButton.data("user",user);
+            $(".div-header").append(editButton);    
         }
       
         if(user.firstName && user.lastName){
@@ -151,10 +155,7 @@ $(document).ready(function() {
   }
 
   $("#post-search-btn").on("click",function(){
-    $.get("/user",function(data){
-        var id = data.id;
-        getPostsByTitleAndId(id);
-    });
+        getPostsByTitleAndId(userId);
   });
 
   function getPostsByTitleAndId(id){

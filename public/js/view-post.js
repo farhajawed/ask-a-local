@@ -37,7 +37,8 @@ $(document).ready(function () {
           var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
           img.addClass("img-fluid post-image img-thumbnail mt-3 mb-2");
           $("#post-image").append(img);
-          $("#post-date").append(dateFormat(data.createdAt,"MM/DD/YYYY hh:mm:ss"));
+          $("#post-date").append("Created : "+dateFormat(data.createdAt,"MM/DD/YYYY hh:mm:ss"));
+          $("#post-update-date").append("Last updated : "+dateFormat(data.updatedAt,"MM/DD/YYYY hh:mm:ss"));
           getAuthorInfo(data.UserId,data);
         }
         else{

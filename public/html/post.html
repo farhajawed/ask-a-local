@@ -109,15 +109,19 @@
                 </div>
              </div>  
              <div class="right"> 
-              <form id="new-post" action="/api/posts" method="POST" enctype="multipart/form-data">
+              <form id="new-post" action="/api/posts" method="POST" enctype="multipart/form-data" data-toggle="validator">
                     <div class="row">
                         <div class="col-md-12 mt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control custom mb-2" id="title" name="title" placeholder="Post title....">
-                                <textarea class="form-control custom mb-2" rows="10" id="body" name="body" placeholder="Share your thoughts..."></textarea>
-                                <select class="custom-select mb-2" id="category" name="category">
+                                <input type="text" class="form-control custom mb-2" id="title" name="title" placeholder="Post title.... [Required]" required>
+                                <textarea class="form-control custom mb-2" rows="10" id="body" name="body" placeholder="Share your thoughts... [Required]" required></textarea>
+                                <select class="custom-select mb-2" id="category" name="category" required>
                                 </select>
-                                <input class="form-control custom" type="file" name="uploaded_image" accept="" />
+                                <!-- <input class="form-control custom" type="file" name="uploaded_image" accept=""/> -->
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploaded_image" id="profile-image" required>
+                                    <label class="custom-file-label" for="customFile">Upload image [Required]</label>
+                                </div>
                             </div>
                         </div>
                     </div>
