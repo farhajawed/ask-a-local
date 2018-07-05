@@ -72,10 +72,10 @@ $(document).ready(function() {
                 "data-toggle":"modal",
                 "data-target":"#imageModal"
             });
-            $(".wrapper").on("mouseover",".profile-image",function(){
+            $(".wrapper").on("mouseover",function(){
                 $(".small-img").show();
             })
-            $(".wrapper").on("mouseout",".profile-image",function(){
+            $(".wrapper").on("mouseout",function(){
                 $(".small-img").hide();
             })
 
