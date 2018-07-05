@@ -89,16 +89,20 @@
 
             <!-- for all posts -->
             <div class="col-md-9 mt-4 mb-3">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="search-title" placeholder="Search posts by title......">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-success  btn-search" id="post-search-btn" type="submit">
-                            <i class="fas fa-search"></i>
+                 <form>
+                    <div class="input-group mb-3"> 
+                        <input type="text" class="form-control" id="search-title" name="search-title" placeholder="Search posts by title......">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success  btn-search" id="post-search-btn" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <input class="btn btn-outline-info  btn-reset" id="post-reset-btn" type="reset" value="Reset">
+                        </div>          
                     </div>
-                </div>
-                <div class="post-container">
-
-                </div>
+                </form>
+                 <div class="post-container">
+                     <!-- all posts -->
+                 </div>
             </div>
 
              <!-- Upload Image Modal -->
