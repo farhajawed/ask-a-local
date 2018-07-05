@@ -191,9 +191,16 @@ $(document).ready(function() {
      return postDiv;
   }
 
-  $("#post-search-btn").on("click",function(){
+  $("#post-search-btn").on("click",function(event){
+        event.preventDefault();
         getPostsByTitleAndId(userId);
   });
+
+  $("#post-reset-btn").on("click",function(event){
+    event.preventDefault();
+    $("#search-title").val("");
+    getPostData(userId);
+});
 
   function getPostsByTitleAndId(id){
     var title = $("#search-title").val();
