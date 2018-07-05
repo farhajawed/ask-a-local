@@ -6,8 +6,7 @@ $(document).ready(function() {
             var id = url.split("=")[1];
             if(id === data.id){
                 logged = true;
-                userId = data.id;
-               
+                userId = data.id;            
             }
             else{
                 logged = false;
@@ -37,16 +36,50 @@ $(document).ready(function() {
             showAboutSection(data);
         });
     }
+
+    $("#profileForm").on("submit", function handleUpdate(event) {
+        event.preventDefault();
+        var updatedUser ={
+            firstName : $("#firstName").val().trim(),
+            lastName : $("#lastName").val().trim(),
+            location : $("#location").val().trim(),
+            bio : $("#bio").val().trim()
+        }
+        updateProfile(updatedUser);
+    });
     
+    function updateProfile(updatedUser) {
+        $.ajax({
+          method: "PUT",
+          url: "/update/user/"+userId,
+          data: updatedUser
+        })
+          .then(function() {
+            window.location.href = "/dashboard";
+          });
+      }
+
 
     function showAboutSection(user){
       
         // image
         $(".profile-image").attr("src","/images/upload_images/"+user.image);
-      
+          
         //show edit button only if logged in user visits her own dashboard
         if(logged === true){ 
-            var editButton = $("<button>").addClass("btn btn-info edit-about");
+            //show upload icon on hover
+            $(".profile-image").attr({
+                "data-toggle":"modal",
+                "data-target":"#imageModal"
+            });
+            $(".wrapper").on("mouseover",".profile-image",function(){
+                $(".small-img").show();
+            })
+            $(".wrapper").on("mouseout",".profile-image",function(){
+                $(".small-img").hide();
+            })
+
+            var editButton = $("<button>").addClass("btn btn-info edit-about ml-2");
             var editIcon = $("<i>").addClass("far fa-edit");
             editButton.append(editIcon);
             editButton.attr("data-toggle","modal");
@@ -104,7 +137,6 @@ $(document).ready(function() {
         $("#lastName").val($(this).data("user").lastName);
         $("#location").val($(this).data("user").location);
         $("#bio").val($(this).data("user").bio);
-        // $('input[type=file]#profile-image').val($(this).data("user").image);
     }
 
     
