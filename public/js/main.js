@@ -1,5 +1,5 @@
 
-//for logged in username and signout functionality of every page
+//for logged in username and signout functionality of each page
 
 $(document).ready(function() {
 
