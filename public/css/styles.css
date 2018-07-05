@@ -86,9 +86,9 @@ body{
     font-weight: bold;  
 }
 
-.form-control{
+/* .form-control{
     background: rgba(0,0,0,.13) !important;
-}
+} */
 
 .custom{
     background: whitesmoke !important;
@@ -231,3 +231,22 @@ input:disabled{
     color:red;
 }
 
+.wrapper{
+    display: inline-block;
+    position:relative;
+}
+
+.wrapper:hover{
+    cursor: pointer;
+}
+ 
+.small-img{
+    position:absolute;
+    right: 35%;
+    bottom: 30%;
+    display: none;
+  }
+
+  input[type="file"]{
+     overflow: hidden;
+  }

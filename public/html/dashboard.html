@@ -72,13 +72,15 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card mt-4 profile-div">
-                    <div class="card-title">
-                        <img class="card-img-top profile-image">
+                    <div class="card-title image-card"> 
+                        <div class="wrapper">
+                                <img class="card-img-top profile-image"/>
+                                <button type="button" class="btn btn-sm btn-info small-img" data-toggle="modal" data-target="#imageModal">
+                                        <img src="/images/image-up.png" />
+                                </button>         
+                        </div>
                     </div>
-                    <div class="card-header div-header">About
-                        <!-- <i class="far fa-edit edit-about" data-toggle="modal" data-target="#exampleModal">
-                        </i> -->
-                    </div>
+                    <div class="card-header div-header">About</div>
                     <div class="card-body about-div">
                         <!--About me contents-->
                     </div>
@@ -99,6 +101,28 @@
                 </div>
             </div>
 
+             <!-- Upload Image Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Upload Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form id="new-image" action="/upload/image" method="POST" enctype="multipart/form-data" data-toggle="validator">
+                        <div class="modal-body">
+                                <input class="form-control custom" id="pro-pic" type="file" name="uploaded_image" accept="" required/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary upload-image">Upload</button>
+                        </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
 
             <!-- edit profile modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,10 +135,8 @@
                             </button>
                         </div>
 
-
                         <!-- had to use POST due to file upload -->
-
-                        <form id="profileForm" method="POST" action="/update/profile" enctype="multipart/form-data" data-toggle="validator" role="form">
+                        <form id="profileForm" data-toggle="validator">
                             <div class="modal-body edit-profile-div">
                                 <div class="row mb-2">
                                     <div class="col-md-12">
@@ -128,15 +150,6 @@
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-md-12">
-                                        <label for="photo">Photo</label>
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="uploaded_image" id="profile-image" required>
-                                            <label class="custom-file-label" for="customFile">Change photo</label>
-                                        </div>
-                                    </div>
                                     <div class="col-md-12">
                                         <label for="location">Location</label>
                                     </div>
