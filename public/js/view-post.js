@@ -26,15 +26,19 @@ $(document).ready(function () {
     function getPostData(id) {
       var queryUrl = "/api/posts/" + id;
       $.get(queryUrl, function (data) {
+        console.log(data);
         if (data) {
           $("#post-title").append(data.title);
           $("#post-body").append(data.body);
-          $("#post-category").append(data.Category.name);
-          //  if(data.image){
-          var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
-          img.addClass("img-fluid post-image img-thumbnail mt-3 mb-2");
-          $("#post-image").append(img);
-          $("#post-date").append("Created : "+dateFormat(data.createdAt,"MM/DD/YYYY hh:mm:ss"));
+          if(data.Category!==null){
+            $("#post-category").append(data.Category.name+" | ");
+          }
+          if(data.image){
+            var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
+            img.addClass("img-fluid post-image img-thumbnail mt-3 mb-2");
+            $("#post-image").append(img);
+          }
+          $("#post-date").append("Created : "+dateFormat(data.createdAt,"MM/DD/YYYY hh:mm:ss")+" | ");
           $("#post-update-date").append("Last updated : "+dateFormat(data.updatedAt,"MM/DD/YYYY hh:mm:ss"));
           getAuthorInfo(data.UserId,data);
         }
@@ -55,7 +59,7 @@ $(document).ready(function () {
           $("#post-author-img").append(anchor);
           var authorAnchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
           authorAnchor.addClass("author-anchor");
-          authorAnchor.append(data.username);
+          authorAnchor.append(data.username+" | ");
           $("#post-author").append(authorAnchor);
 
           $.get("/user",function(user){

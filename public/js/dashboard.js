@@ -68,7 +68,7 @@ $(document).ready(function() {
         //show edit button only if logged in user visits her own dashboard
         if(logged === true){ 
             //show upload icon on hover
-            $(".profile-image").attr({
+            $(".wrapper").attr({
                 "data-toggle":"modal",
                 "data-target":"#imageModal"
             });
@@ -181,8 +181,12 @@ $(document).ready(function() {
      anchor.html(post.title);
      postTitle.html(anchor);
      var additionalDiv = $("<div>").addClass("additional-div");
-     var text = "Posted in "+post.Category.name+" | Created at "+dateFormat(post.createdAt,"MM/DD/YYYY hh:mm:ss");
-     additionalDiv.html(text);
+     if(post.Category!==null){
+          var text = "Posted in "+post.Category.name+" | ";
+          additionalDiv.append(text);
+     }
+     var textCreation = "Created at "+dateFormat(post.createdAt,"MM/DD/YYYY hh:mm:ss");
+     additionalDiv.append(textCreation);
      postDiv.append(anchor,additionalDiv);
      return postDiv;
   }

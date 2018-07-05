@@ -96,30 +96,32 @@ app.get("/api/categories",auth,function(req, res) {
         res.json(result);
       });
 });
-  
+ 
 //posts with image : submission by form
 app.post("/api/posts", function(req, res) {
-    console.log("Received data", req.files);
+  var img_name = null;
+  if(JSON.stringify(req.files) !== '{}'){
     var file = req.files.uploaded_image;
-		var img_name=file.name;
+    img_name=file.name;
     res.set('Content-Type', 'text/plain');
     if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){                        
       file.mv('public/images/upload_images/'+file.name, function(err) {
       if (err){
-        return res.status(500).send(err);
-    }
-    db.Post.create({
-      title: req.body.title,
-      body:req.body.body,
-      CategoryId:req.body.category,
-      image: img_name,
-      UserId : req.session.user.id
-    }).
-    then(function(result) {
-      res.redirect("/view-post?post_id="+result.id);
-    })
-  });
- }
+        // return res.status(500).send(err);
+        img_name = null;
+      }
+    });
+ }}
+  db.Post.create({
+    title: req.body.title,
+    body:req.body.body,
+    CategoryId:req.body.category,
+    image: img_name,
+    UserId : req.session.user.id
+  }).
+  then(function(result) {
+    res.redirect("/view-post?post_id="+result.id);
+  })
 }); 
 
 //updates user profile photo: submission by form
