@@ -37,8 +37,8 @@ $(document).ready(function() {
    function createCategoryRow(categoryData) {
     var newTr = $("<tr class='d-flex'>");
     newTr.data("category", categoryData);
-    newTr.append("<td class='col-7 category-name'>" + categoryData.name + "</td>");
-    newTr.append("<td class='col-5'><button class='btn btn-info mr-2 edit-category'><i class='far fa-edit'></i></button>"+
+    newTr.append("<td class='col-9 category-name'>" + categoryData.name + "</td>");
+    newTr.append("<td class='col-3'><button class='btn btn-info mr-2 edit-category'><i class='far fa-edit'></i></button>"+
                                    "<button class='btn btn-danger delete-category'><i class='far fa-trash-alt'></i></button></td>");
     return newTr;
   }

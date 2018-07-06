@@ -70,7 +70,6 @@ module.exports = function(app) {
   });
 
   app.get("/category", auth, function(req, res) {
-    console.log(req.session.userRole);
     if(req.session.user.userRole === "ADMIN"){
       res.sendFile(path.join(__dirname, "../public/html/category.html"));
     }
@@ -82,6 +81,15 @@ module.exports = function(app) {
   app.get("/user_post", auth, function(req, res) {
     if(req.session.user.userRole === "ADMIN"){
       res.sendFile(path.join(__dirname, "../public/html/user-post.html"));
+    }
+    else{
+       res.redirect("/dashboard");
+    }
+  });
+
+  app.get("/view_post_user", auth, function(req, res) {
+    if(req.session.user.userRole === "ADMIN"){
+      res.sendFile(path.join(__dirname, "../public/html/view-post-admin.html"));
     }
     else{
        res.redirect("/dashboard");

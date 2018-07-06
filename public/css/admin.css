@@ -16,6 +16,7 @@ body.admin{
     padding-bottom:15px;
     border-radius: 10px;
     display: none;
+    border:2px solid slategrey;
 }
 
 .nav-admin:hover{
@@ -29,4 +30,12 @@ th{
 
 .table-header{
     color:#36465d;
+}
+
+.user-search{
+    border: 1px solid #36465d;
+}
+
+.not-active{
+    border:none;
 }
