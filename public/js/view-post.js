@@ -6,7 +6,6 @@ $(document).ready(function () {
   */
 
     var url = window.location.href;
- 
   
     if (url.indexOf("?post_id=") !== -1) {
       postId = url.split("=")[1];
@@ -82,27 +81,33 @@ $(document).ready(function () {
 
             editButtonContainer.append(editButton, deleteButton);    
             editButtonContainer.on("click",".edit-post",editPost);
-            editButtonContainer.on("click",".delete-post",deletePost);
+            editButtonContainer.on("click",".delete-post",function(){
+              deletePost(user);
+            });
           }});   
         }
       })
     }
 
 
-  function deletePost() {
+  function deletePost(user) {
     $.ajax({
       method: "DELETE",
       url: "/api/posts/" + postId
     })
       .then(function() {
-        window.location.href = "/dashboard";
+        if(user.userRole === "ADMIN"){
+          window.location.href="/user-management";
+        }
+        else{
+          window.location.href = "/dashboard";
+        }
       });
   }
 
   
   function editPost(){
     window.location.href = "/post?edit_post_id=" + postId;
-    
   }
 
 });

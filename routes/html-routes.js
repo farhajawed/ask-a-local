@@ -25,7 +25,7 @@ module.exports = function(app) {
       res.redirect("/dashboard");
    }
    else if(req.cookies){
-     //need to place else where??
+     //need to place it else where?? :/
       db.User.findOne({
         where: {
           token: req.cookies.token
@@ -69,27 +69,27 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/QA.html"));
   });
 
-  app.get("/category", auth, function(req, res) {
+  app.get("/category-management", auth, function(req, res) {
     if(req.session.user.userRole === "ADMIN"){
-      res.sendFile(path.join(__dirname, "../public/html/category.html"));
+      res.sendFile(path.join(__dirname, "../public/html/category-management.html"));
     }
     else{
        res.redirect("/dashboard");
     }
   });
 
-  app.get("/user_post", auth, function(req, res) {
+  app.get("/user-management", auth, function(req, res) {
     if(req.session.user.userRole === "ADMIN"){
-      res.sendFile(path.join(__dirname, "../public/html/user-post.html"));
+      res.sendFile(path.join(__dirname, "../public/html/user-management.html"));
     }
     else{
        res.redirect("/dashboard");
     }
   });
 
-  app.get("/view_post_user", auth, function(req, res) {
+  app.get("/post-management", auth, function(req, res) {
     if(req.session.user.userRole === "ADMIN"){
-      res.sendFile(path.join(__dirname, "../public/html/view-post-admin.html"));
+      res.sendFile(path.join(__dirname, "../public/html/post-management.html"));
     }
     else{
        res.redirect("/dashboard");

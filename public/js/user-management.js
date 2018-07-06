@@ -10,7 +10,7 @@ $(document).ready(function() {
             // console.log(data.length);
             if(data.length>0){
                 newTr.append("<td>"+data[0].post_count+"</td>");
-                newTr.append("<td><a href='view_post_user?user_id="+id+"'>View Posts</a></td>");
+                newTr.append("<td><a href='post-management?user_id="+id+"'>View Posts</a></td>");
             }   
             else{
                 newTr.append("<td>0</td>");
@@ -95,7 +95,7 @@ $(document).ready(function() {
 
       $("#user-reset-btn").on("click",function(event){
         event.preventDefault();
-        $("#search-username").val("");
+        $("#search-user").val("");
         userList.empty();
         alertDiv.remove();
         getUsers();

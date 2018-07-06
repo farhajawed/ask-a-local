@@ -198,9 +198,9 @@ app.put("/api/posts/:id", function(req, res) {
     });
 });
 
-//gets all posts ordered by post creation date 
+//gets all posts ordered by post update date 
 app.get("/api/posts", auth,function(req, res) {
-  db.Post.findAll({include: [ db.Category ] },{order: [['createdAt', 'DESC']]})
+  db.Post.findAll({include: [ db.Category ] },{order: [['updatedAt', 'DESC']]})
     .then(function(dbPost) {
     res.json(dbPost);
   });
@@ -240,7 +240,7 @@ app.get("/api/posts/:id", auth,function(req, res) {
 app.get("/api/posts/user/:id",function(req, res) {
   db.Post.findAll({
     order: [
-          ['createdAt','DESC']
+          ['updatedAt','DESC']
     ],
     where: {
       UserId: req.params.id
@@ -356,6 +356,19 @@ app.put("/en-dis/user/:id",function(req,res){
       res.json(dbUser);
     });
   });
+
+  //get posts by update date and user id
+  app.get("/api/posts/userId/:id/date/:date",function(req, res) {
+      db.Post.findAll({
+        where:[db.sequelize.where(db.sequelize.fn('date', db.sequelize.col('updatedAt')), '=', req.params.date),
+        {
+          UserId: req.params.id
+        }
+      ]
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
+    });
 }
 
 

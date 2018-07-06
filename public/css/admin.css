@@ -2,12 +2,7 @@ body.admin{
     background: white;
 }
 
-.nav-admin{
 
-    color: cyan;
-    font-weight: bold;
-    display: none;
-}
 
 .nav-item-admin{
     background: rgba(0,0,0,.13) !important;
@@ -19,10 +14,7 @@ body.admin{
     border:2px solid slategrey;
 }
 
-.nav-admin:hover{
-    text-decoration: none;
-    color: white;
-}
+
 
 th{
     font-weight: bold;
@@ -38,4 +30,24 @@ th{
 
 .not-active{
     border:none;
+}
+
+#post-creator{
+    color:#db6f57;
+}
+
+.admin a{
+    color: darkcyan;
+}
+
+.nav-admin{
+
+    color: cyan !important;
+    font-weight: bold;
+    display: none;
+}
+
+.nav-admin:hover{
+    text-decoration: none;
+    color: white !important;
 }
