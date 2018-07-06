@@ -22,24 +22,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/signup">Sign Up</a></li>
-                    <li><a href="/dashboard">Dashboard</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/login">Log In</a></li>
-                    <li><a href="/logout">Log Out</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
     <!--Login Up Form-->
 
     <div class="container">
@@ -54,10 +36,8 @@
                             <div class="form-group">
                                     
                                 <!-- feedback -->
-                                <div id="logout-msg" role="alert"></div>
-                                <div id="signup-success" role="alert"></div>
-                                <div id="false-msg" role="alert"></div>
-                                <div id="unauthorized-msg" role="alert"></div> 
+                                <div id="failure-msg" role="alert"></div>
+                                <div id="success-msg" role="alert"></div> 
 
                                 <label for="username">Username<span class="r">*</span></label>
                                 <input type="username" class="form-control" id="username" name="username" placeholder="Enter username">

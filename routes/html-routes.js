@@ -69,8 +69,23 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/QA.html"));
   });
 
-app.get("/category", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/html/category-manager.html"));
-});
+  app.get("/category", auth, function(req, res) {
+    console.log(req.session.userRole);
+    if(req.session.user.userRole === "ADMIN"){
+      res.sendFile(path.join(__dirname, "../public/html/category.html"));
+    }
+    else{
+       res.redirect("/dashboard");
+    }
+  });
+
+  app.get("/user_post", auth, function(req, res) {
+    if(req.session.user.userRole === "ADMIN"){
+      res.sendFile(path.join(__dirname, "../public/html/user-post.html"));
+    }
+    else{
+       res.redirect("/dashboard");
+    }
+  });
 
 };

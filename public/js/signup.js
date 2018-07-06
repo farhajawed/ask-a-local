@@ -28,7 +28,7 @@ $(document).ready(function() {
                 window.location.href = "/?signup=success";  
             }
            else{
-               if(data.errors[0].message){
+               if(data.errors){
                    $("#signup-fail").addClass("alert alert-danger").html(data.errors[0].message);
                } 
            }                        

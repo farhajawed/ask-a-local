@@ -8,16 +8,19 @@ $(document).ready(function() {
 
     var url = window.location.search;
     if (url.indexOf("?msg=success") !== -1) {
-        $("#logout-msg").addClass("alert alert-success").append("You are successfully logged out!");
+        $("#success-msg").addClass("alert alert-success").append("You are successfully logged out!");
     }
     else if (url.indexOf("?msg=false") !== -1) {
-        $("#false-msg").addClass("alert alert-danger").append("Invalid username or password");
+        $("#failure-msg").addClass("alert alert-danger").append("Invalid username or password");
     }
     else if(url.indexOf("?msg=unauthorized") !== -1) {
-        $("#unauthorized-msg").addClass("alert alert-danger").append("Please log in or sign up first.");
+        $("#failure-msg").addClass("alert alert-danger").append("Please log in or sign up first.");
     }
     else if(url.indexOf("?signup=success") !== -1) {
-        $("#signup-success").addClass("alert alert-success").append("Registration successful! Please log in.");
+        $("#success-msg").addClass("alert alert-success").append("Registration successful! Please log in.");
+    }
+    else if(url.indexOf("?msg=disabled") !== -1) {
+        $("#failure-msg").addClass("alert alert-danger").append("Your account has been disabled by admin.");
     }
    ; 
     
@@ -37,10 +40,15 @@ $(document).ready(function() {
     
     function submitLoginForm(loginCredentials){
         $.post("/",loginCredentials,function(data){
-            if(!data){
+            console.log(data);
+            if(data==="invalid"){
                 window.location.href = "/?msg=false";  
             }
+            else if(data==="disabled"){
+                window.location.href = "/?msg=disabled";  
+            }
             else{
+                console.log(data);
                 updateToken(data);
             }
            
@@ -54,8 +62,8 @@ $(document).ready(function() {
         data: post
         })
         .then(function() {
-          
-           window.location.href = "/dashboard";
+            window.location.href = "/dashboard";
+           
         });
     }
     

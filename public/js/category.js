@@ -1,105 +1,132 @@
 $(document).ready(function() {
-    // Getting references to the name input and category container, as well as the table body
-    var categoryInput = $("#category-name");
-    var createdList = $("#createdSection");
-    var updatedList = $("#updatedSection");
-    var deletedList = $("#deletedSection");
-
- 
-    // Adding event listeners to the form to create a new object, and the button to delete
-    // a category
-    $(document).on("create", ".category-form", createCategory);
-    $(document).on("update", ".category-form", updateCategory);
-    $(document).on("delete", ".category-form", deleteCategory);
+  var nameInput = $("#category-name");
+  var categoryList = $("tbody");
+  var categoryContainer = $(".category-container");
   
-    var categoryName= {
-      dbCategory:name.val().trim()};
+  $(document).on("submit", "#category-form", handleCategoryFormSubmit);
+  $(document).on("click", ".delete-category", handleDeleteButtonPress);
+  $(document).on("click", ".edit-category", handleEditButtonPress);
 
-    function createCategory (event) {
-      event.preventDefault();
-      
-      if (categoryInput==="") {
-        categoryInput==="".push(categoryName);
-//update api with new category the append 
-      $.post("/api/category", categoryName,function(data){
-        console.log(data);
-        res.json(data);
-        createdList.append("<ul>" + data)
-      })
-      }
-      else{ 
-        updateCategory();
-       
-      }
+  getCategory();
+ 
+  function handleCategoryFormSubmit(event) {
+    event.preventDefault();
+    if (!nameInput.val().trim().trim()) {
+      return;
     }
-       function updateCategory(){
-        
-       if( categoryInput=== categoryName)
-        $.ajax("/api/category" + categoryName, {
-          type:"PUT",
-          data:categoryInput
-        }).then(
-          function(){
-            console.log(categoryInput)
-          }
-        )
-       }
-      
-  //////////////////////////
-    // Function for creating a new list row for categories
- /* function (dbCategory) {
-    var newTr = $("<tr>");
-    newTr.data("category", dbCategory);
-    newTr.append("<td>" + dbCategory+ "</td>");
-    newTr.append("<td> " + dbCategory + "</td>");
-    newTr.append("<td><a href='/dashboard?Categories_id=" + dbCategory + "'>Go to Posts</a></td>");
-    newTr.append("<td><a href='/post?Categories_id=" + dbCategory+ "'>Create a Post</a></td>");
-    newTr.append("<td><a style='cursor:pointer;color:red' class='delete-category'>Delete Category</a></td>");
+   
+    upsertCategory({
+      name: nameInput
+        .val()
+        .trim()
+    });
+  }
+
+  function upsertCategory(categoryData) {
+    $.post("/api/category", categoryData)
+      .then(function(data){
+        if(data.errors){
+          renderEmpty(data.errors[0].message);
+        }
+         else{
+          getCategory();
+         }  
+      });
+  }
+
+   function createCategoryRow(categoryData) {
+    var newTr = $("<tr class='d-flex'>");
+    newTr.data("category", categoryData);
+    newTr.append("<td class='col-7 category-name'>" + categoryData.name + "</td>");
+    newTr.append("<td class='col-5'><button class='btn btn-info mr-2 edit-category'><i class='far fa-edit'></i></button>"+
+                                   "<button class='btn btn-danger delete-category'><i class='far fa-trash-alt'></i></button></td>");
     return newTr;
   }
-  
-    // Function for retrieving catgeories and getting them ready to be rendered to the page
-    function getCategories() {
-      $.get("/api/category", function(data) {
-        var rowsToAdd = [];
-        for (var i = 0; i < data.length; i++) {
-          rowsToAdd.push(createCategoryRow(data[i].name));
-        }
-        renderCategoryList(rowsToAdd);
-        nameInput.val("");
-      });
-    }
-  
-    // A function for rendering the list of categories to the page
-    function renderCategoryList(rows) {
-      categoryList.children().not(":last").remove();
-      categoryContainer.children(".alert").remove();
-      if (rows.length) {
-        console.log(rows);
-        categoryList.prepend(rows);
+
+  function getCategory() {
+    $.get("/api/categories", function(data) {
+      var rowsToAdd = [];
+      for (var i = 0; i < data.length; i++) {
+        rowsToAdd.push(createCategoryRow(data[i]));
       }
-      else {
-        renderEmpty();
+      renderCategoryList(rowsToAdd);
+      nameInput.val("");
+    });
+  }
+
+
+  function renderCategoryList(rows) {
+    //removes all except the last which is a form
+    categoryList.children().not(":last").remove();
+    categoryContainer.children(".alert").remove();
+    if (rows.length) {
+      categoryList.prepend(rows);
+    }
+    else {
+      renderEmpty("No categories created.");
+    }
+  }
+
+  function renderEmpty(text) {
+    var alertDiv = $("<div>");
+    alertDiv.addClass("alert alert-danger");
+    alertDiv.text(text);
+    categoryContainer.append(alertDiv);
+  }
+
+
+  function handleDeleteButtonPress() {
+    var listItemData = $(this).parent("td").parent("tr").data("category");
+    var id = listItemData.id;
+    $.ajax({
+      method: "DELETE",
+      url: "/api/category/" + id
+    })
+      .then(getCategory);
+   }
+
+   
+  function handleEditButtonPress() {
+    var listItemData = $(this).parent("td").parent("tr").data("category");
+    var categoryNameTd = $(this).parent().parent().children("td")[0];
+    $(categoryNameTd).empty();
+    var inputField = $('<input class="form-control" type="text" id="update-category-name" placeholder="Enter category">');
+    inputField.val(listItemData.name);
+    var updateBtn = $("<button class='btn btn-success mr-1 mt-1' id='update'>");
+    updateBtn.html("Update");
+    var cancelBtn = $("<button class='btn btn-warning mt-1' id='cancel'>");
+    cancelBtn.html("Cancel");
+    $(categoryNameTd).append(inputField,updateBtn,cancelBtn);
+    var id = listItemData.id;
+
+    $(categoryNameTd).on("click","#cancel",function(){
+      $(".alert-danger").remove();
+      $(categoryNameTd).empty();
+      $(categoryNameTd).append(listItemData.name);
+    });
+
+    $(categoryNameTd).on("click","#update",function(){
+       var newCategory = {
+           name : inputField.val().trim()
+       }
+       updateCategory(newCategory,id);
+    })
+   
+    function updateCategory(newCategory,id){
+             $.ajax({
+                 method: "PUT",
+                 url: "/api/category/" + id,
+                 data : newCategory
+            })
+           .then(function(data){
+              if(data.errors){
+                renderEmpty(data.errors[0].message);
+              }
+               else{
+                getCategory();
+               }          
+           });
+          }
       }
-    }
-  
-    // Function for handling what to render when there are no categories
-    function renderEmpty() {
-      var alertDiv = $("<div>");
-      alertDiv.addClass("alert alert-danger");
-      alertDiv.text("You must create a Category before you can create a Post.");
-      categoryContainer.append(alertDiv);
-    }
-  
-    // Function for handling what happens when the delete button is pressed
-    function handleDeleteButtonPress() {
-      var listItemData = $(this).parent("td").parent("tr").data("category");
-      var id = listItemData.id;
-      $.ajax({
-        method: "DELETE",
-        url: "/api/category/" + id
-      })
-        .then(getCategories);
-    }*/
   });
-  
+   

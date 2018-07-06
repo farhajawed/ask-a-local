@@ -1,0 +1,32 @@
+body.admin{
+    background: white;
+}
+
+.nav-admin{
+
+    color: cyan;
+    font-weight: bold;
+    display: none;
+}
+
+.nav-item-admin{
+    background: rgba(0,0,0,.13) !important;
+    padding:10px;
+    padding-top:15px;
+    padding-bottom:15px;
+    border-radius: 10px;
+    display: none;
+}
+
+.nav-admin:hover{
+    text-decoration: none;
+    color: white;
+}
+
+th{
+    font-weight: bold;
+}
+
+.table-header{
+    color:#36465d;
+}

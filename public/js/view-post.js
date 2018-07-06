@@ -65,7 +65,8 @@ $(document).ready(function () {
           $.get("/user",function(user){
            loggedUserId= user.id;
          
-          if(data.id == loggedUserId){
+          //admin and creator of post can edit
+          if(data.id == loggedUserId || user.userRole === "ADMIN"){
             //edit buttons
             var editButtonContainer = $(".edit-buttons");
 

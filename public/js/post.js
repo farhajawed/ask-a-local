@@ -7,7 +7,7 @@ $(document).ready(function () {
         postId = url.split("=")[1];
         //checks to see whether the signed in user is the creator of the post
         $.get("/api/posts/"+postId+"/user/"+loggedUserId,function(post){
-          if(post!==null){
+          if(post!==null || data.userRole === "ADMIN"){
             populatePostForm(postId);    
           }
           else{
@@ -35,7 +35,7 @@ $(document).ready(function () {
         categoryContainer.append(option);
         for (var i = 0; i < data.length; i++) {
           var option = $("<option>");
-          option.attr("value", i + 1);
+          option.attr("value", data[i].id);
           option.html(data[i].name);
           categoryContainer.append(option);
         }

@@ -21,15 +21,18 @@ app.post('/', function (req, res) {
   })
   .then(function(dbPost) {
     if(!dbPost){
-      return res.json(false);
+      return res.json("invalid");
+    }
+    else if(dbPost && dbPost.enabled==0){
+      return res.json("disabled");
     }
     else{
       var deCrypyPw = encrypt.decrypt(dbPost.password);
       if(deCrypyPw!==req.body.password){
-        res.json(false);
+        return res.json("invalid");
+      }
+      return res.json(dbPost);
     }
-    return res.json(dbPost);
-   }
   });       
 });
  
@@ -89,14 +92,7 @@ app.get("/user",auth,function(req, res) {
   });
 });
 
-//get all categories
-app.get("/api/categories",auth,function(req, res) {
-    db.Category.findAll({})
-      .then(function(result) {
-        res.json(result);
-      });
-});
- 
+
 //posts with image : submission by form
 app.post("/api/posts", function(req, res) {
   var img_name = null;
