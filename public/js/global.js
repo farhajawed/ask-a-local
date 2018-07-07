@@ -51,43 +51,5 @@ $(document).ready(function() {
 
     mostrecentPosts();
 
-    // function writeCatPosts(){
-    //     var cat = $(".cat").val();
-    //     console.log(cat)
-    //     var queryUrl = "api/post/categories/" + cat;
-    //     $.get(queryUrl, function(data){
-    //         console.log(data);
-    //         for(var i = 0; i < data.length; i++){
-    //             var card = 
-    //             "<div class='card'>" +
-    //                 "<img class='card-img-top' src='#' alt='Card image'>" +
-    //                 "<div class='card-body'>" +
-    //                     "<h5 class='card-title'>" + data[i].UserId + "</h5>" +
-    //                     "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].title + "</h6>" +
-    //                     "<p class='card-text'>" + data[i].body + "</p>" +
-    //                 "</div>" + 
-    //             "</div>";
-    //             // var postId = data[i].id;
-    //             // $.get("api/posts/" + postId + "/comments", function(result){
-    //             //     console.log(result);
-    //             //     // if(){
 
-    //             //     // }else{
-
-    //             //     // }
-    //             // });
-
-    //             $(".categories").append(card);
-
-    //         }
-    //     })
-    // }
-
-    // writeCatPosts();
-    
-    // $(".cat").on("click", (result)=>{
-
-    //     writeCatPosts();
-
-    // });
 });

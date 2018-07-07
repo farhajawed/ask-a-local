@@ -7,10 +7,13 @@ $(document).ready(function() {
 
 
     signupForm.on("submit",handleSignupFormSubmit);
+<<<<<<< HEAD
 
     
      
     
+=======
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
     function handleSignupFormSubmit(event){
         event.preventDefault();
         // Wont submit the post 

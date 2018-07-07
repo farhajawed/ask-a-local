@@ -2,9 +2,17 @@ module.exports = function(sequelize,DataTypes) {
 
     var Category = sequelize.define("Category", {
     
+<<<<<<< HEAD
         name: DataTypes.STRING
     
     },
+=======
+        name: {
+          type: DataTypes.STRING
+        }
+    },
+
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
     {
         timestamps:false,
     });
@@ -12,6 +20,7 @@ module.exports = function(sequelize,DataTypes) {
     Category.associate=function(models) {
         Category.hasMany(models.Post,{
             foreignKey: {
+<<<<<<< HEAD
                 allowNull: false
             },
             onDelete: "cascade"
@@ -31,3 +40,13 @@ module.exports = function(sequelize,DataTypes) {
     return Category;
     
     }
+=======
+                allowNull: true  //category can be deleted
+            }
+            // onDelete: "cascade"
+    });
+    }
+    return Category;
+    
+}
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561

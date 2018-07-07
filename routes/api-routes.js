@@ -16,7 +16,7 @@ var auth = function(req, res, next) {
 app.post('/', function (req, res) {
   db.User.findOne({
     where: {
-      email: req.body.email
+      username: req.body.username
     }
   })
   .then(function(dbPost) {
@@ -45,7 +45,7 @@ app.put("/", function(req, res) {
     }).then(function(result) {
         res.cookie("token",randomToken);
         req.session.user = req.body;
-        req.session.user.email= req.body.email;
+        req.session.user.username= req.body.username;
         req.session.user.id = req.body.id;
         res.json(result);
     });  
@@ -68,7 +68,7 @@ app.post("/signup",function(req,res){
 // Logout endpoint
 app.get('/logout',auth,function (req, res) {
   res.clearCookie("token");
-  res.send("success");
+  res.json("success");
   req.session.destroy();
 
 });
@@ -78,7 +78,7 @@ app.get("/user",auth,function(req, res) {
       res.json(req.session.user);
  });
 
-
+//get users by id
  app.get("/user/:id", auth,function(req, res) {
   db.User.findOne({
     where: {
@@ -89,68 +89,105 @@ app.get("/user",auth,function(req, res) {
   });
 });
 
+//get all categories
 app.get("/api/categories",auth,function(req, res) {
     db.Category.findAll({})
       .then(function(result) {
         res.json(result);
       });
 });
-  
-   //need to refactor this function
-   app.post("/api/posts", function(req, res) {
-    console.log("Received data", req.files);
+ 
+//posts with image : submission by form
+app.post("/api/posts", function(req, res) {
+  var img_name = null;
+  if(JSON.stringify(req.files) !== '{}'){
     var file = req.files.uploaded_image;
-		var img_name=file.name;
+    img_name=file.name;
     res.set('Content-Type', 'text/plain');
     if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){                        
       file.mv('public/images/upload_images/'+file.name, function(err) {
       if (err){
-        return res.status(500).send(err);
-    }
-    db.Post.create({
-      title: req.body.title,
-      body:req.body.body,
-      CategoryId:req.body.category,
-      image: img_name,
-      UserId : req.session.user.id
+        // return res.status(500).send(err);
+        img_name = null;
+      }
+    });
+ }}
+  db.Post.create({
+    title: req.body.title,
+    body:req.body.body,
+    CategoryId:req.body.category,
+    image: img_name,
+    UserId : req.session.user.id
+  }).
+  then(function(result) {
+    res.redirect("/view-post?post_id="+result.id);
+  })
+}); 
+
+//updates user profile photo: submission by form
+app.post("/upload/image", function(req, res) {
+  var file = req.files.uploaded_image;
+  var img_name=file.name;
+  res.set('Content-Type', 'text/plain');
+  if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){                      
+    file.mv('public/images/upload_images/'+file.name, function(err) {
+    if (err){
+      return res.status(500).send(err);
+     }
+    db.User.update({
+      image: img_name
+    },{
+      where: {
+        id: req.session.user.id
+      }
     }).
     then(function(result) {
-      res.redirect("/view-post?post_id="+result.id);
+      console.log(result);
+      res.redirect("/dashboard");
     })
   });
  }
 }); 
 
-  //need to refactor this function
-app.post("/update/profile", function(req, res) {
-  var file = req.files.uploaded_image;
-  var img_name=file.name;
-  res.set('Content-Type', 'text/plain');
-  if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-                               
-    file.mv('public/images/upload_images/'+file.name, function(err) {
-
-    if (err){
-      return res.status(500).send(err);
-  }
+//updates user by id
+app.put("/update/user/:id",function(req,res){
+  var userId = req.params.id;
   db.User.update({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     location: req.body.location,
     bio: req.body.bio,
-    image: img_name
   },{
-    where: {
-      id: req.session.user.id
+    where:{
+      id: userId
     }
-  }).
-  then(function(result) {
-    res.redirect("/dashboard");
-  })
-});
-}
-}); 
+  }).then(function(dbUser){
+    res.json(dbUser);
+  }).catch(function(err) {
+      console.log(err);
+      res.json(err);
+    });
+})
 
+// PUT route for updating posts by id
+app.put("/api/posts/:id", function(req, res) {
+  var postId = req.params.id;
+  db.Post.update({
+      body:req.body.body,
+      CategoryId:req.body.category
+  },
+  {
+      where: {
+        id: postId
+      }
+    })
+    .then(function(dbPost) {
+      console.log(dbPost);
+      res.json(dbPost);
+    });
+});
+
+//gets all posts ordered by post creation date 
 app.get("/api/posts", auth,function(req, res) {
   db.Post.findAll({include: [ db.Category ] },{order: [['createdAt', 'DESC']]})
     .then(function(dbPost) {
@@ -176,6 +213,7 @@ app.get("/api/post/category/:category", auth, (req, res)=> {
   });
 });
 
+//gets a post by post id
 app.get("/api/posts/:id", auth,function(req, res) {
   db.Post.findOne({
     where: {
@@ -187,6 +225,7 @@ app.get("/api/posts/:id", auth,function(req, res) {
   });
 });
 
+//gets posts by user id
 app.get("/api/posts/user/:id",function(req, res) {
   db.Post.findAll({
     order: [
@@ -201,6 +240,19 @@ app.get("/api/posts/user/:id",function(req, res) {
   });
 });
 
+//gets a post by user id and post id
+app.get("/api/posts/:postId/user/:id",function(req, res) {
+  db.Post.findOne({
+    where: {
+      UserId: req.params.id,
+      id:req.params.postId
+    }
+  }).then(function(dbPost) {
+    res.json(dbPost);
+  });
+});
+
+//gets posts by title
   app.get("/api/posts/user/:id/title/:title",function(req, res) {
     db.Post.findAll({
       where: {
@@ -214,8 +266,41 @@ app.get("/api/posts/user/:id",function(req, res) {
       res.json(dbPost);
     });
   });
+
+  //deletes a post by id
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  })
+
+  // PUT route for updating posts
+  app.put("/api/posts/:id", function(req, res) {
+    var postId = req.params.id;
+    db.Post.update({
+        body:req.body.body,
+        CategoryId:req.body.category
+    },
+    {
+        where: {
+          id: postId
+        }
+      })
+      .then(function(dbPost) {
+        console.log(dbPost);
+        res.json(dbPost);
+      });
+  });
+
 }
 
+
+ 
 //   app.get("/api/count_posts",auth,function(req,res){
 //     db.Post.count({
 //       attributes: ['UserId'],

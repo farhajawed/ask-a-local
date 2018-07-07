@@ -72,6 +72,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card mt-4 profile-div">
+<<<<<<< HEAD
                     <div class="card-title">
                         <img class="card-img-top profile-image">
                     </div>
@@ -79,6 +80,17 @@
                         <!-- <i class="far fa-edit edit-about" data-toggle="modal" data-target="#exampleModal">
                         </i> -->
                     </div>
+=======
+                    <div class="card-title image-card"> 
+                        <div class="wrapper">
+                                <img class="card-img-top profile-image"/>
+                                <button type="button" class="btn btn-sm btn-info small-img" data-toggle="modal" data-target="#imageModal">
+                                        <img src="/images/image-up.png" />
+                                </button>         
+                        </div>
+                    </div>
+                    <div class="card-header div-header">About</div>
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
                     <div class="card-body about-div">
                         <!--About me contents-->
                     </div>
@@ -87,6 +99,7 @@
 
             <!-- for all posts -->
             <div class="col-md-9 mt-4 mb-3">
+<<<<<<< HEAD
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="search-title" placeholder="Search posts by title......">
                     <div class="input-group-append">
@@ -99,6 +112,46 @@
                 </div>
             </div>
 
+=======
+                 <form>
+                    <div class="input-group mb-3"> 
+                        <input type="text" class="form-control" id="search-title" name="search-title" placeholder="Search posts by title......">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success  btn-search" id="post-search-btn" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <input class="btn btn-outline-info  btn-reset" id="post-reset-btn" type="reset" value="Reset">
+                        </div>          
+                    </div>
+                </form>
+                 <div class="post-container">
+                     <!-- all posts -->
+                 </div>
+            </div>
+
+             <!-- Upload Image Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Upload Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form id="new-image" action="/upload/image" method="POST" enctype="multipart/form-data" data-toggle="validator">
+                        <div class="modal-body">
+                                <input class="form-control custom" id="pro-pic" type="file" name="uploaded_image" accept="" required/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary upload-image">Upload</button>
+                        </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
 
             <!-- edit profile modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,10 +164,15 @@
                             </button>
                         </div>
 
+<<<<<<< HEAD
 
                         <!-- had to use POST due to file upload -->
 
                         <form id="profileForm" method="POST" action="/update/profile" enctype="multipart/form-data" data-toggle="validator" role="form">
+=======
+                        <!-- had to use POST due to file upload -->
+                        <form id="profileForm" data-toggle="validator">
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
                             <div class="modal-body edit-profile-div">
                                 <div class="row mb-2">
                                     <div class="col-md-12">
@@ -129,6 +187,7 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-12">
+<<<<<<< HEAD
                                         <label for="photo">Photo</label>
                                     </div>
                                     <div class="col-md-12 mb-2">
@@ -138,6 +197,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
+=======
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
                                         <label for="location">Location</label>
                                     </div>
                                     <div class="col-md-12 mb-2">

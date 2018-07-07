@@ -1,7 +1,11 @@
 $(document).ready(function() {
      
     var loginForm = $("#login-form");
+<<<<<<< HEAD
     var email = $("#email");
+=======
+    var username = $("#username");
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
     var password = $("#password");
 
     loginForm.on("submit",handleLoginFormSubmit);
@@ -24,12 +28,20 @@ $(document).ready(function() {
     function handleLoginFormSubmit(event){
         event.preventDefault();
         // Wont submit the post 
+<<<<<<< HEAD
         if(!email.val().trim() || !password.val().trim()){
+=======
+        if(!username.val().trim() || !password.val().trim()){
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
             return;
         }
 
         var loginCredentials = {
+<<<<<<< HEAD
             email : email.val().trim(),
+=======
+            username : username.val().trim(),
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
             password : password.val().trim()
         };
         submitLoginForm(loginCredentials);            
@@ -37,7 +49,10 @@ $(document).ready(function() {
     
     function submitLoginForm(loginCredentials){
         $.post("/",loginCredentials,function(data){
+<<<<<<< HEAD
             console.log(data);
+=======
+>>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
             if(!data){
                 window.location.href = "/?msg=false";  
             }
