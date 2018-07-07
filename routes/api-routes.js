@@ -237,7 +237,7 @@ app.get("/api/posts/:id", auth,function(req, res) {
 });
 
 //*******gets posts by user id
-app.get("/api/posts/user/:id",function(req, res) {
+app.get("/api/posts/user/:id",auth,function(req, res) {
   db.Post.findAll({
     order: [
           ['updatedAt','DESC']
@@ -252,7 +252,7 @@ app.get("/api/posts/user/:id",function(req, res) {
 });
 
 //gets a post by user id and post id
-app.get("/api/posts/:postId/user/:id",function(req, res) {
+app.get("/api/posts/:postId/user/:id",auth,function(req, res) {
   db.Post.findOne({
     where: {
       UserId: req.params.id,
@@ -264,7 +264,7 @@ app.get("/api/posts/:postId/user/:id",function(req, res) {
 });
 
 //gets posts by title
-  app.get("/api/posts/user/:id/title/:title",function(req, res) {
+  app.get("/api/posts/user/:id/title/:title",auth,function(req, res) {
     db.Post.findAll({
       where: {
         title: {
@@ -342,21 +342,26 @@ app.put("/en-dis/user/:id",function(req,res){
   });
 
   //gets users by username
-  app.get("/api/users/username/:username",function(req, res) {
-    db.User.findAll({
-      where: {
-        username: {
-          $like: '%' + req.params.username + '%'
-        },
-        userRole:"USER"
-      }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
+  app.get("/api/users/username/:username",auth,function(req, res) {
+      if(req.session.user.userRole==="ADMIN"){
+        db.User.findAll({
+          where: {
+            username: {
+              $like: '%' + req.params.username + '%'
+            },
+            userRole:"USER"
+          }
+        }).then(function(dbUser) {
+          res.json(dbUser);
+        });
+    }
+    else{
+      res.redirect("/dashboard");
+    }
   });
 
-  //get posts by update date and user id
-  app.get("/api/posts/userId/:id/date/:date",function(req, res) {
+  //get posts by date and user id
+  app.get("/api/posts/userId/:id/date/:date",auth,function(req, res) {
       db.Post.findAll(
         {
           include: [ db.Category ],
@@ -364,7 +369,7 @@ app.put("/en-dis/user/:id",function(req,res){
                [db.sequelize.where(db.sequelize.fn('date', db.sequelize.col('updatedAt')), '=', req.params.date),
                 {
                   UserId: req.params.id
-                }],order: [['updatedAt', 'ASC']]
+                }],order: [['updatedAt', 'DESC']]
         }
       ).then(function(dbUser) {
         res.json(dbUser);

@@ -37,7 +37,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/category", function(req, res) {
+  app.post("/api/category", auth,function(req, res) {
     // Create an category with the data available to us in req.body
     db.Category.create(req.body).then(function(dbCategory) {
       // console.log(dbCategory);

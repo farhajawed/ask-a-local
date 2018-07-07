@@ -96,6 +96,7 @@ function renderPostList(rows) {
    $("#date-reset-btn").on("click",function(event){
         event.preventDefault();
         clear();
+        $("#datepicker").val("");
         getPosts(userId);
    }); 
 
