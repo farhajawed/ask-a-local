@@ -1,6 +1,4 @@
 $(document).ready(function () {
-<<<<<<< HEAD
-=======
   var url = window.location.href;
 
   $.get("/user",function(data){
@@ -23,7 +21,6 @@ $(document).ready(function () {
       getCategories();
     }
   });
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
 
   
   function getCategories() {
@@ -33,13 +30,8 @@ $(document).ready(function () {
         var option = $("<option>");
         option.attr("value", "default");
         option.attr("disabled", "disabled");
-<<<<<<< HEAD
-        option.attr("selected", "selected");
-        option.html("Select a category");
-=======
         // option.attr("selected", "selected");
         option.html("Select a category [Required]");
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
         categoryContainer.append(option);
         for (var i = 0; i < data.length; i++) {
           var option = $("<option>");
@@ -51,12 +43,6 @@ $(document).ready(function () {
     });
   }
 
-<<<<<<< HEAD
-  getCategories();
-
-  
-
-=======
   function populatePostForm(id){
     var queryUrl = "/api/posts/" + id;
     $.get(queryUrl, function(data) {
@@ -100,5 +86,4 @@ $(document).ready(function () {
         });
     }
   }
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
 });
