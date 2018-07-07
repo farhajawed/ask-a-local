@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // var nameInput = $("#category-name");
      var userList = $("tbody");
      var userContainer = $(".user-container");
      $(document).on("click", ".en-dis-btn", handleButtonPress);
@@ -7,7 +6,6 @@ $(document).ready(function() {
     getUsers();
     function getCount(id,newTr) {
         $.get("/api/post_count/user/"+id, function(data) {
-            // console.log(data.length);
             if(data.length>0){
                 newTr.append("<td>"+data[0].post_count+"</td>");
                 newTr.append("<td><a href='post-management?user_id="+id+"'>View Posts</a></td>");
@@ -103,20 +101,23 @@ $(document).ready(function() {
     
       function getUsersByUsername(){
         var username = $("#search-user").val().trim();
-        var queryUrl = "/api/users/username/"+username;
-        userList.empty();
-        alertDiv.remove();
-        $.get(queryUrl, function(data) {
-            if(data.length<=0){
-                renderEmpty();
-            }
-            else{
-                for (var i = 0; i < data.length; i++){
-                    createUserRow(data[i],getCount);     
+        if(username!==""){
+            var queryUrl = "/api/users/username/"+username;
+            userList.empty();
+            alertDiv.remove();
+            $.get(queryUrl, function(data) {
+                if(data.length<=0){
+                    renderEmpty();
                 }
-            }
-           
-        });
+                else{
+                    for (var i = 0; i < data.length; i++){
+                        createUserRow(data[i],getCount);     
+                    }
+                }
+               
+            });
+        }
+       
     }
 });
      

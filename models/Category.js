@@ -7,9 +7,12 @@ module.exports = function(sequelize,DataTypes) {
           unique: {
             args: true,
             msg: 'Category exists!'
+            }
+        }},
+        {
+            timestamps:false  //if we dont need timestamp columns
         }
-      }
-    });
+    );
     
     Category.associate=function(models) {
         Category.hasMany(models.Post,{

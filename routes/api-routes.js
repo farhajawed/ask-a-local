@@ -71,8 +71,8 @@ app.post("/signup",function(req,res){
 // Logout endpoint
 app.get('/logout',auth,function (req, res) {
   res.clearCookie("token");
-  res.json("success");
   req.session.destroy();
+  return res.json("success");
 
 });
 
@@ -85,7 +85,7 @@ app.get("/user",auth,function(req, res) {
   app.get("/api/users",auth,function(req, res) {
     if(req.session.user.userRole==="ADMIN"){
         db.User.findAll( 
-        {where: {userRole: "USER"}},{order: [['username', 'ASC']]})
+        {where: {userRole: "USER"},order: [['username', 'ASC']]})
           .then(function(dbUser) {
           res.json(dbUser);
         });
@@ -200,7 +200,7 @@ app.put("/api/posts/:id", function(req, res) {
 
 //gets all posts ordered by post update date 
 app.get("/api/posts", auth,function(req, res) {
-  db.Post.findAll({include: [ db.Category ] },{order: [['updatedAt', 'DESC']]})
+  db.Post.findAll({include: [ db.Category ] ,order: [['updatedAt', 'DESC']]})
     .then(function(dbPost) {
     res.json(dbPost);
   });
@@ -335,10 +335,8 @@ app.put("/en-dis/user/:id",function(req,res){
         id: req.params.id
       }
     }).then(function(dbUser){
-      console.log(dbUser);
       res.json(dbUser);
     }).catch(function(err) {
-        console.log(err);
         res.json(err);
       });
   });
@@ -359,13 +357,16 @@ app.put("/en-dis/user/:id",function(req,res){
 
   //get posts by update date and user id
   app.get("/api/posts/userId/:id/date/:date",function(req, res) {
-      db.Post.findAll({
-        where:[db.sequelize.where(db.sequelize.fn('date', db.sequelize.col('updatedAt')), '=', req.params.date),
+      db.Post.findAll(
         {
-          UserId: req.params.id
+          include: [ db.Category ],
+          where:
+               [db.sequelize.where(db.sequelize.fn('date', db.sequelize.col('updatedAt')), '=', req.params.date),
+                {
+                  UserId: req.params.id
+                }],order: [['updatedAt', 'ASC']]
         }
-      ]
-      }).then(function(dbUser) {
+      ).then(function(dbUser) {
         res.json(dbUser);
       });
     });

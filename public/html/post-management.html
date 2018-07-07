@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="css/admin.css">
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- date picker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <!-- date picker ends-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <!--Bootstrap JS-->
@@ -82,15 +86,30 @@
 
     <div class="container">
         <div class="row">
-            <!-- for all posts -->
-            <div class="col-md-12 mt-4 mb-3">
+            <div class="col-md-12 mt-4 mb-2">
                 <h2 class="table-header">Posts Management : <span id="post-creator"></span></h2>
+            </div>
+            <!-- for all posts -->
+            <div class="col-md-5"> 
+                    <form>
+                            <div class="input-group mb-3"> 
+                                <input type="text" class="form-control" id="datepicker" placeholder="Pick a date of post">
+                                <div>
+                                    <button class="btn btn-success" id="date-search-btn" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <input class="btn btn-outline-info  btn-reset" id="date-reset-btn" type="reset" value="Reset">
+                                </div>          
+                            </div>
+                    </form>
+                </div>
+                <div class="col-md-12 mb-3">  
                  <div class="post-container table-responsive-md">
                      <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Created</th>
+                                    <th>Created At</th>
                                     <th>Last Updated</th>
                                     <th>Category</th>
                                 </tr>
@@ -101,6 +120,7 @@
                             </tbody>
                     </table>
                  </div>
+               </div>
             </div>
         </div>
     </div>
