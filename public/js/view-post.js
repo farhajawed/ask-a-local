@@ -11,6 +11,8 @@ $(document).ready(function () {
     if (url.indexOf("?post_id=") !== -1) {
       postId = url.split("=")[1];
       getPostData(postId);
+      getCommentData(postId);
+      $(document).on("click", "#submitcomment",createComment(postId));
     }
     else{
        window.location.href = "/explorer";
@@ -103,5 +105,39 @@ $(document).ready(function () {
     window.location.href = "/post?edit_post_id=" + postId;
     
   }
+
+  function getCommentData(id) {
+    var queryUrl = "api/posts/" + id + "/comments";
+    $.get(queryUrl, function(data){
+
+      for(let i = data.length; i > 0; i--){
+
+        var item = $("<ul class='comment-section'>");
+
+        $.get("/user/" + data[i].UserId, function(result){
+
+          let username = result.username;
+          let userimage = result.image;
+          console.log(result);
+          
+          item.append("<li class='comment'><div class='info'><a href='#'>" + username + "</a><span>4 hours ago</span></div><a class='avatar' href='#'><img src='/images/uplaod_images/" + userimage + "' width='35' alt='Profile Picture' title='" + username + "'</a><p>" + data[i].body + "</p></li>");
+
+        });
+
+        $(".write-new").append(item);
+      }
+    });
+  }
+
+  function createComment(id){
+    event.preventDefault();
+    var body = $("#commentbody").val();
+    console.log(body);
+    var queryUrl = "/api/post/" + id + "/comments/" + body;
+    $.post(queryUrl, function() {
+      console.log("Comment Submitted")
+    })
+  };
+
 
 });
