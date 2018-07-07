@@ -208,7 +208,7 @@ app.get("api/posts/:postId/comments", auth, function(req, res){
 
 app.get("/api/post/category/:category", auth, (req, res)=> {
   var category = req.params.category;
-  db.Post.findAll({where: {category: category}},{order: [['createdAt', 'DESC']]}).then((dbPost)=> {
+  db.Post.findAll({where: {CategoryId: category}},{order: [['createdAt', 'DESC']]}).then((dbPost)=> {
     res.json(dbPost);
   });
 });

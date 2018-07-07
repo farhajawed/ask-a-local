@@ -6,7 +6,7 @@ $(document).ready(function() {
             console.log(data);
             var categories = $(".categories");
             for(var i = 0; i < data.length; i++){
-                var catbutton = ("<button class ='cat' name=" + data[i].id + ">" + data[i].name + "</button>")
+                var catbutton = ("<button class ='cat' value=" + data[i].id + ">" + data[i].name + "</button>")
                 categories.append(catbutton);
             }
         })          
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
     function mostrecentPostsbyCat(){
         $("#categoryPosts").html("");
-        var catid = this.name;
+        var catid = this.value;
         console.log(catid);
         var queryUrl = "/api/post/category/" + catid;
         $.get(queryUrl, function(data){
