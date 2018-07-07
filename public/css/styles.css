@@ -27,15 +27,7 @@ body{
 }
 
 .btn-search{
-<<<<<<< HEAD
-    background-color: #db6f57;;
-=======
     background-color: #db6f57;
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
-}
-
-.nav-link{
-    padding:0;
 }
 
 .fa-search{
@@ -90,15 +82,9 @@ body{
     font-weight: bold;  
 }
 
-<<<<<<< HEAD
-.form-control{
-    background: rgba(0,0,0,.13) !important;
-}
-=======
 /* .form-control{
     background: rgba(0,0,0,.13) !important;
 } */
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
 
 .custom{
     background: whitesmoke !important;
@@ -201,10 +187,7 @@ body{
     padding: 20px;
     border-radius: 5px;
     margin-top:10px;
-<<<<<<< HEAD
-=======
     word-wrap: break-word;
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561
 }
 .post-image{
     max-height:400px;
@@ -235,8 +218,6 @@ body{
 .author-anchor{
     color:#db6f57;
 }
-<<<<<<< HEAD
-=======
 
 input:disabled{
     background: #36465d !important;
@@ -265,4 +246,3 @@ input:disabled{
   input[type="file"]{
      overflow: hidden;
   }
->>>>>>> 4af2e6a2fd5f78a03a0d86ad40d8dce97d50f561

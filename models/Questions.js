@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes){
             }
         },
         location: {
-type:DataTypes.STRING,
+        type:DataTypes.STRING,
         },
     
         Question:

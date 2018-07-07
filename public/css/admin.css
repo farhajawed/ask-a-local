@@ -1,0 +1,54 @@
+body.admin{
+    background: white;
+}
+
+
+
+.nav-item-admin{
+    background: rgba(0,0,0,.13) !important;
+    padding:10px;
+    padding-top:15px;
+    padding-bottom:15px;
+    border-radius: 10px;
+    display: none;
+    border:2px solid slategrey;
+}
+
+
+
+th{
+    font-weight: bold;
+}
+
+.table-header{
+    color:#36465d;
+}
+
+.user-search{
+    border: 1px solid #36465d;
+}
+
+.not-active{
+    border:none;
+}
+
+#post-creator{
+    color:#db6f57;
+}
+
+.admin a{
+    color: darkcyan;
+}
+
+.nav-admin{
+
+    color: cyan !important;
+    font-weight: bold;
+    display: none;
+}
+
+.nav-admin:hover{
+    text-decoration: none;
+    color: white !important;
+}
+

@@ -35,8 +35,15 @@ module.exports =function (sequelize,DataTypes) {
     {
             type:DataTypes.STRING,
             defaultValue:"default.png"
-    }
-    
+    },
+    enabled:{
+        type:DataTypes.BOOLEAN,
+        defaultValue: 1
+    },
+    userRole:{
+        type:DataTypes.STRING,
+        defaultValue:"USER"
+    }   
     });
     User.associate = function (models) {
         models.User.hasMany(models.Comment, {

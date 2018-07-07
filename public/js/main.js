@@ -17,9 +17,12 @@ $(document).ready(function() {
 
     function getLoggedUser(){
         $.get("/user",function(data){
-            $(".logged-username").html(data.username);  
-            
-        })
-    }
+            $(".logged-username").html(data.username);    
+            if(data.userRole === "ADMIN"){
+                $(".nav-item-admin").show();
+                $(".nav-admin").show();
+            }
+  });
+}
 
 });

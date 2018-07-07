@@ -6,7 +6,7 @@ $(document).ready(function() {
             console.log(data);
             var categories = $(".categories");
             for(var i = 0; i < data.length; i++){
-                var catbutton = ("<button class ='cat' name=" + data[i].id + ">" + data[i].name + "</button>")
+                var catbutton = ("<button class ='cat' value=" + data[i].id + ">" + data[i].name + "</button>")
                 categories.append(catbutton);
             }
         })          
@@ -37,7 +37,8 @@ $(document).ready(function() {
                         "</div>" +
                         "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
                         "<div class='card-body'>" +
-                            "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].title + "</h6>" +
+                            "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
+                            "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
                         "</div>" + 
                     "</div>";
@@ -59,7 +60,7 @@ $(document).ready(function() {
 
     function mostrecentPostsbyCat(){
         $("#categoryPosts").html("");
-        var catid = this.name;
+        var catid = this.value;
         console.log(catid);
         var queryUrl = "/api/post/category/" + catid;
         $.get(queryUrl, function(data){
@@ -83,8 +84,9 @@ $(document).ready(function() {
                             "<h5 class='username card-title'>" + username + "</h5>" + 
                         "</div>" +
                         "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
-                        "<div class='card-body'>" +
-                            "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].title + "</h6>" +
+                       "<div class='card-body'>" +
+                            "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
+                            "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
                         "</div>" + 
                     "</div>";

@@ -7,7 +7,7 @@ $(document).ready(function () {
         postId = url.split("=")[1];
         //checks to see whether the signed in user is the creator of the post
         $.get("/api/posts/"+postId+"/user/"+loggedUserId,function(post){
-          if(post!==null){
+          if(post!==null || data.userRole === "ADMIN"){
             populatePostForm(postId);    
           }
           else{
@@ -16,12 +16,9 @@ $(document).ready(function () {
            }
        });
     }
-    else{
-      //if not update, create new post
-      getCategories();
-    }
   });
 
+  getCategories();
   
   function getCategories() {
     $.get("/api/categories", function (data) {
@@ -35,7 +32,7 @@ $(document).ready(function () {
         categoryContainer.append(option);
         for (var i = 0; i < data.length; i++) {
           var option = $("<option>");
-          option.attr("value", i + 1);
+          option.attr("value", data[i].id);
           option.html(data[i].name);
           categoryContainer.append(option);
         }
@@ -52,14 +49,14 @@ $(document).ready(function () {
 
   //modifying existing form for edit with ajax
   function showPrepopulatedPost(data){
-    getCategories();
+    console.log(data);
     $(".header-post").html("Edit Post");
     $("#new-post").removeAttr("action method enctype");
     $("input#title" ).val(data.title);
     $("input#title").attr("disabled",true);
     $("input#title").removeAttr("required");
     $("#body").val(data.body);
-    $("#category").val(data.category);
+    $("#category").val(data.CategoryId);
     $("input#pic").remove();
   
     $("#new-post").on("submit", function handleEdit(event) {

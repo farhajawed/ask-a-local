@@ -21,15 +21,18 @@ app.post('/', function (req, res) {
   })
   .then(function(dbPost) {
     if(!dbPost){
-      return res.json(false);
+      return res.json("invalid");
+    }
+    else if(dbPost && dbPost.enabled==0){
+      return res.json("disabled");
     }
     else{
       var deCrypyPw = encrypt.decrypt(dbPost.password);
       if(deCrypyPw!==req.body.password){
-        res.json(false);
+        return res.json("invalid");
+      }
+      return res.json(dbPost);
     }
-    return res.json(dbPost);
-   }
   });       
 });
  
@@ -68,8 +71,8 @@ app.post("/signup",function(req,res){
 // Logout endpoint
 app.get('/logout',auth,function (req, res) {
   res.clearCookie("token");
-  res.json("success");
   req.session.destroy();
+  return res.json("success");
 
 });
 
@@ -77,6 +80,21 @@ app.get('/logout',auth,function (req, res) {
 app.get("/user",auth,function(req, res) {
       res.json(req.session.user);
  });
+
+//********gets all users [only admin has access]
+  app.get("/api/users",auth,function(req, res) {
+    if(req.session.user.userRole==="ADMIN"){
+        db.User.findAll( 
+        {where: {userRole: "USER"},order: [['username', 'ASC']]})
+          .then(function(dbUser) {
+          res.json(dbUser);
+        });
+    }
+   else{
+     res.redirect("/dashboard");
+   }
+  });
+
 
 //get users by id
  app.get("/user/:id", auth,function(req, res) {
@@ -89,13 +107,6 @@ app.get("/user",auth,function(req, res) {
   });
 });
 
-//get all categories
-app.get("/api/categories",auth,function(req, res) {
-    db.Category.findAll({})
-      .then(function(result) {
-        res.json(result);
-      });
-});
  
 //posts with image : submission by form
 app.post("/api/posts", function(req, res) {
@@ -187,9 +198,9 @@ app.put("/api/posts/:id", function(req, res) {
     });
 });
 
-//gets all posts ordered by post creation date 
+//gets all posts ordered by post update date 
 app.get("/api/posts", auth,function(req, res) {
-  db.Post.findAll({include: [ db.Category ] },{order: [['createdAt', 'DESC']]})
+  db.Post.findAll({include: [ db.Category ] ,order: [['updatedAt', 'DESC']]})
     .then(function(dbPost) {
     res.json(dbPost);
   });
@@ -208,7 +219,7 @@ app.get("api/posts/:postId/comments", auth, function(req, res){
 
 app.get("/api/post/category/:category", auth, (req, res)=> {
   var category = req.params.category;
-  db.Post.findAll({where: {category: category}},{order: [['createdAt', 'DESC']]}).then((dbPost)=> {
+  db.Post.findAll({where: {CategoryId: category}},{order: [['createdAt', 'DESC']]}).then((dbPost)=> {
     res.json(dbPost);
   });
 });
@@ -225,11 +236,11 @@ app.get("/api/posts/:id", auth,function(req, res) {
   });
 });
 
-//gets posts by user id
+//*******gets posts by user id
 app.get("/api/posts/user/:id",function(req, res) {
   db.Post.findAll({
     order: [
-          ['createdAt','DESC']
+          ['updatedAt','DESC']
     ],
     where: {
       UserId: req.params.id
@@ -297,15 +308,67 @@ app.get("/api/posts/:postId/user/:id",function(req, res) {
       });
   });
 
+  //****post counts by user id
+  app.get("/api/post_count/user/:id",auth,function(req,res){
+    db.Post.findAll({
+        attributes: [
+          'UserId',
+          [db.sequelize.fn('COUNT', db.sequelize.col('UserId')), 'post_count'],
+        ],
+        group: ['UserId'],
+        having: {
+                'UserId': {
+                  $eq: req.params.id
+              },
+         }
+      }).then(function(dbCount){
+          res.json(dbCount);
+    });
+  });
+
+  //put route for enabling/disabling a user
+app.put("/en-dis/user/:id",function(req,res){
+    db.User.update({
+      enabled: req.body.enabled
+    },{
+      where:{
+        id: req.params.id
+      }
+    }).then(function(dbUser){
+      res.json(dbUser);
+    }).catch(function(err) {
+        res.json(err);
+      });
+  });
+
+  //gets users by username
+  app.get("/api/users/username/:username",function(req, res) {
+    db.User.findAll({
+      where: {
+        username: {
+          $like: '%' + req.params.username + '%'
+        },
+        userRole:"USER"
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  //get posts by update date and user id
+  app.get("/api/posts/userId/:id/date/:date",function(req, res) {
+      db.Post.findAll(
+        {
+          include: [ db.Category ],
+          where:
+               [db.sequelize.where(db.sequelize.fn('date', db.sequelize.col('updatedAt')), '=', req.params.date),
+                {
+                  UserId: req.params.id
+                }],order: [['updatedAt', 'ASC']]
+        }
+      ).then(function(dbUser) {
+        res.json(dbUser);
+      });
+    });
 }
 
-
- 
-//   app.get("/api/count_posts",auth,function(req,res){
-//     db.Post.count({
-//       attributes: ['UserId'],
-//       group: 'UserId'
-//     }).then(function(dbCount){
-//       res.json(dbCount);
-//     });
-//   })
