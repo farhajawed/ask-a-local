@@ -25,6 +25,7 @@ $(document).ready(function() {
     getCat();
 
     function mostrecentPosts(){
+        $("#categoryPosts").html("");
         var queryUrl = "api/posts/";
         $.get(queryUrl, function(data){
             // console.log(data);
@@ -64,6 +65,7 @@ $(document).ready(function() {
     };
 
     mostrecentPosts();
+    $(document).on("click","#allPosts", mostrecentPosts);
     $(document).on("click",".cat", mostrecentPostsbyCat);
 
     function mostrecentPostsbyCat(){
