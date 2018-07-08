@@ -69,6 +69,11 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/QA.html"));
   });
 
+  app.get("/allquestions", auth, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/show-all-QA.html"));
+  });
+
+
 app.get("/category", function(req, res) {
   res.sendFile(path.join(__dirname, "../public/html/category-manager.html"));
 });

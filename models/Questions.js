@@ -9,10 +9,7 @@ module.exports = function(sequelize, DataTypes){
               len: [1]
             }
         },
-        location: {
-type:DataTypes.STRING,
-        },
-    
+       
         Question:
         {
           type:DataTypes.TEXT,
