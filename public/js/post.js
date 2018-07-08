@@ -49,7 +49,7 @@ $(document).ready(function () {
 
   //modifying existing form for edit with ajax
   function showPrepopulatedPost(data){
-    console.log(data);
+    // console.log(data);
     $(".header-post").html("Edit Post");
     $("#new-post").removeAttr("action method enctype");
     $("input#title" ).val(data.title);

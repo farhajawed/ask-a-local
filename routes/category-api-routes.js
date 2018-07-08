@@ -69,7 +69,7 @@ module.exports = function(app) {
 
 
   app.delete("/api/category/:id", function(req, res) {
-    // Delete the Catgegory with the id available to us in req.params.id
+    // Delete the Catgory with the id available to us in req.params.id
     db.Category.destroy({
       where: {
         id: req.params.id

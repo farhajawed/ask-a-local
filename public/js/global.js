@@ -3,7 +3,7 @@ $(document).ready(function() {
     function getCat(cat) {
         var queryUrl = "/api/categories";
         $.get(queryUrl,function(data){
-            console.log(data);
+            // console.log(data);
             var categories = $(".categories");
             for(var i = 0; i < data.length; i++){
                 var catbutton = ("<button class ='cat' value=" + data[i].id + ">" + data[i].name + "</button>")
@@ -16,7 +16,7 @@ $(document).ready(function() {
     function mostrecentPosts(){
         var queryUrl = "api/posts/";
         $.get(queryUrl, function(data){
-            console.log(data);
+            // console.log(data);
             var username;
             var userimage;
             var card;
@@ -26,7 +26,7 @@ $(document).ready(function() {
                 $.get("/user/" + data[i].UserId, function(result){
                     username = result.username;
                     userimage = result.image;
-                    console.log(result);
+                    // console.log(result);
                     card = 
                     "<div class='card'>" +
                         "<div class='card-header'>" + 
@@ -62,10 +62,10 @@ $(document).ready(function() {
     function mostrecentPostsbyCat(){
         $("#categoryPosts").html("");
         var catid = this.value;
-        console.log(catid);
+        // console.log(catid);
         var queryUrl = "/api/post/category/" + catid;
         $.get(queryUrl, function(data){
-            console.log(data);
+            // console.log(data);
             var username;
             var userimage;
             var card;
@@ -75,7 +75,7 @@ $(document).ready(function() {
                 $.get("/user/" + data[i].UserId, function(result){
                     username = result.username;
                     userimage = result.image;
-                    console.log(result);
+                    // console.log(result);
                 
 
                     card = 

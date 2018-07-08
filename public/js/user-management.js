@@ -59,7 +59,7 @@ $(document).ready(function() {
       var listItemData = $(this).parent("td").parent("tr").data("user");
       var id = listItemData.id;
       var status = $(this).attr("data-status");
-      console.log(id,status,$(this).html());
+    //   console.log(id,status,$(this).html());
       var newUser={
           enabled: status
       }
@@ -80,7 +80,7 @@ $(document).ready(function() {
                 data : newUser
             })
             .then(function(data){
-                console.log(data);
+                // console.log(data);
                 getUsers();    
             });
         } 
