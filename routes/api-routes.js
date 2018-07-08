@@ -386,7 +386,9 @@ app.put("/en-dis/user/:id",function(req,res){
       where: {
         PostId: postId
       }, order: [['updatedAt', 'DESC']],include: [{ model: db.User, attributes: ['username','image'] }]
-    });
+    }).then(function(results){
+      res.json(results);
+    })
     
 //questions api's start here
   app.post("/api/questions", function(req, res) {

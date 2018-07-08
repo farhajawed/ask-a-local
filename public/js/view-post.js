@@ -62,8 +62,8 @@ $(document).ready(function () {
           $("#post-author-img").append(anchor);
           var authorAnchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
           authorAnchor.addClass("author-anchor");
-          authorAnchor.append(data.username+" | ");
-          $("#post-author").append(authorAnchor);
+          authorAnchor.append(data.username);
+          $("#post-author").append(authorAnchor," | ");
 
           $.get("/user",function(user){
            loggedUserId= user.id;
@@ -160,7 +160,7 @@ $(document).ready(function () {
     var container = $(".show-comments-div");
     var queryUrl = "/api/post/"+postId+"/comments";
     $.get(queryUrl, function(data) {
-      // console.log(data);
+        console.log(data);
        for(var i = 0; i < data.length; i++){
         var eachCommentDiv = $("<div>").addClass("single-comment-div media p-3 mt-2");
         var imgLink = $("<a>").attr("href","/dashboard?user_id="+data[i].UserId);

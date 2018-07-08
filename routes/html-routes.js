@@ -69,7 +69,6 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/QA.html"));
   });
 
-<<<<<<< HEAD
   //admin access
   app.get("/category-management", auth, function(req, res) {
     if(req.session.user.userRole === "ADMIN"){
@@ -97,15 +96,8 @@ module.exports = function(app) {
        res.redirect("/dashboard");
     }
   });
-=======
   app.get("/allquestions", auth, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/show-all-QA.html"));
   });
-
-
-app.get("/category", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/html/category-manager.html"));
-});
->>>>>>> QA
 
 };

@@ -9,7 +9,16 @@ $(document).ready(function() {
                 var catbutton = ("<li>" + data[i].name + "<br><button id ='C" + data[i].id + "'class ='cat' name='" + data[i].name + "' value=" + data[i].id + "></button></li>");
                 categories.append(catbutton);
                 var selector = "#C"+ data[i].id
-                $(selector).html("<img src='/images/icons8-" + data[i].name + "-64.png'>");
+                // $(selector).html("<img src='/images/icons8-" + data[i].name + "-64.png'>");
+                
+                //as an admin can create category..if cat image not found, replace it with replacement.png
+                var img = $( "<img>" )
+                    .error(function() {
+                     $( this ).attr( "src", "/images/replacement.png" );
+                    })
+                     .attr( "src", "/images/icons8-" + data[i].name + "-64.png" );
+                     
+                $(selector).append(img);
             }
         })          
     }
@@ -40,10 +49,10 @@ $(document).ready(function() {
                     }
                        
                     card+= "<div class='card-body'>" +
-                            "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
-                            "</a></h6>" +
-                            "<p class='card-text'>" + data[i].body + "</p>" +
-                        "</div>" + 
+                                "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"' class='global-title'>"+data[i].title+
+                                "</a></h6>" +
+                                "<p class='card-text'>" + data[i].body + "</p>" +
+                           "</div>" + 
                     "</div>";
                     spot.append(card);
 
@@ -85,8 +94,8 @@ $(document).ready(function() {
                     if(data[i].image){
                        card+="<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>";
                     }  
-                    card+=  "<div class='card-body'>" +
-                            "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
+                     card+= "<div class='card-body'>" +
+                            "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"' class='global-title'>"+data[i].title+
                             "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
                         "</div>" + 

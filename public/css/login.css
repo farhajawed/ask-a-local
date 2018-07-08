@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+html, body 
+{ 
+    height: 100%;
+    font-family: 'Slabo 27px', serif;
+    color:beige; 
+    background: black;
+}
+
+/* Make the image fully responsive */
+.carousel-inner img {
+   width: 100vw;
+   height:100vh;
+}
+
+.wrapper{
+  margin:0;
+  padding: 0;
+  position: relative;
+}  
+
+.login-div{
+  position: absolute;
+  top:0;
+}
+
+.carousel-caption p{
+    font-size:28px;
+}
+
+.login-card{
+ background: rgba(0,0,0,.7) !important;
+
+}
+.site-name{
+   color:crimson;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color:black;
+  font-family: 'Luckiest Guy', cursive;
+   margin:0 auto;
+}
+
+.btn-custom{
+  background:darkcyan;
+  color:beige;
+}
+
+.btn-custom:hover{
+  background: teal;
+}

@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     var url = window.location.search;
     if (url.indexOf("?msg=success") !== -1) {
-        $("#success-msg").addClass("alert alert-success").append("You are successfully logged out!");
+        $("#success-msg").addClass("alert alert-success").append("You have successfully logged out!");
     }
     else if (url.indexOf("?msg=false") !== -1) {
         $("#failure-msg").addClass("alert alert-danger").append("Invalid username or password");
