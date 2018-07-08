@@ -20,7 +20,7 @@ module.exports = function(sequelize,DataTypes) {
                 allowNull: true  //category can be deleted
             }
             // onDelete: "cascade"
-    });
+        });
     }
     return Category;
     

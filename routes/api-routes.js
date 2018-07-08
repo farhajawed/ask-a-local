@@ -206,16 +206,6 @@ app.get("/api/posts", auth,function(req, res) {
   });
 });
 
-app.get("api/posts/:postId/comments", auth, function(req, res){
-  var postId = req.params.postId
-  db.Commments.findAll({
-    where: {
-      postId: postId
-    }
-  }).then(function(results){
-    res.json(results);
-  })
-});
 
 app.get("/api/post/category/:category", auth, (req, res)=> {
   var category = req.params.category;
@@ -375,5 +365,31 @@ app.put("/en-dis/user/:id",function(req,res){
         res.json(dbUser);
       });
     });
+
+  //posting comments
+  app.post("/api/comment/",function(req,res){
+    db.Comment.create({
+       body: req.body.body,
+       PostId : req.body.PostId,
+       UserId :  req.session.user.id
+    }).then(function(dbComment){
+      res.json(dbComment);
+    }).catch(function(err) {
+        res.json(err);
+      });
+  });
+
+  //gets all comments by post id
+  app.get("/api/post/:postId/comments",function(req, res){
+    var postId = req.params.postId
+    db.Comment.findAll({
+      where: {
+        PostId: postId
+      }, order: [['updatedAt', 'DESC']],include: [{ model: db.User, attributes: ['username','image'] }]
+    }).then(function(results){
+      res.json(results);
+    })
+  });
+
 }
 

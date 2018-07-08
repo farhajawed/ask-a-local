@@ -100,27 +100,29 @@
                             <div class="col-md-12 text-center" id="post-image"></div>      
                         </div>
                 </div> 
+            </div>
         </div>
-    </div>
+        <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="comment-div mb-4 mt-4 comment-section">
 
-    <div class="row">
-        <div class="col-md-12">
-            <ul class="comment-section">
-                    <li class="write-new">
-
-                        <form>
-                            <textarea id="commentbody" placeholder="Write your comment here" name="comment"></textarea>
-                            <div class="userCommentsubmit">
-                                <!-- <img src="images/#" width="35" alt="alt"/> -->
-                                <button id="submitcomment" type="submit">Submit</button>
+                            <form id="comment-form">  
+                                <label class="comment-header">Comment</label>      
+                                <textarea class="form-control custom mb-2" rows="2" 
+                                id="commentbody" name="comment" placeholder="Write your comment here" 
+                                required></textarea>
+                                <button type="submit" id="submitcomment" class="btn btn-comment">Submit</button>
+                            </form>
+                            
+                            <div class="show-comments-div">
+                                <!--all comments-->
                             </div>
-                        </form>
-                    
-                    </li>
-            </ul>
+        
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
- </div>
+ 
 
     <!--Custom JS-->
     <script src="js/main.js" type="text/javascript"></script>

@@ -1,39 +1,39 @@
 $(document).ready(function() {
     var url = window.location.href;
-
-      $.get("/user",function(data){
-        if (url.indexOf("?user_id=") !== -1) {
-            var id = url.split("=")[1];
-            if(id === data.id){
-                logged = true;
-                userId = data.id;            
-            }
-            else{
-                logged = false;
-                userId = id;
-            }
-        }
-        else{
-            logged = true;
-            userId = data.id;
-        }
-        getDashboard(userId);
+    $.get("/user",function(data){
+    if (url.indexOf("?user_id=") !== -1) {
+        var id = url.split("=")[1];
+        getUserInfo(data,id);
+    }
+    else{
+        logged = true;
+        showAboutSection(data);
+        getPostData(data.id);
+     }
     });
-
     var aboutDiv = $(".about-div");
     var postContainer = $(".post-container");
    
-   
-    function getDashboard(id){
-        getUserInfo(id);
-        getPostData(id); 
-    }
-
-    
-    function getUserInfo(id){
-        var queryUrl = "/user/" + id;
+    function getUserInfo(sessiondata,urlId){
+        var queryUrl = "/user/" + urlId;
         $.get(queryUrl, function(data) {
+          //profile exists
+          if(data){
+            if(urlId === sessiondata.id){
+                logged = true;
+                userId = sessiondata.id;            
+            }
+            else{
+                logged = false;
+                userId = urlId;
+            }
             showAboutSection(data);
+            getPostData(urlId);
+          }
+          else{
+              window.location.href="/dashboard";
+          }
+         
         });
     }
 

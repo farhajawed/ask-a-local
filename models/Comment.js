@@ -9,6 +9,12 @@ module.exports = function(sequelize, DataTypes) {
         Comment.belongsTo(models.Post, {
           foreignKey: {
             allowNull: true
+          },
+          onDelete: "cascade"
+        });
+        Comment.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: true
           }
         });
       }; 
