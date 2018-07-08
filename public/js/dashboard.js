@@ -33,7 +33,12 @@ $(document).ready(function() {
     function getUserInfo(id){
         var queryUrl = "/user/" + id;
         $.get(queryUrl, function(data) {
-            showAboutSection(data);
+            if(data){
+                showAboutSection(data);
+            }
+            else{
+                window.location.href="/dashboard";
+            }
         });
     }
 

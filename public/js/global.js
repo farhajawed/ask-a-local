@@ -3,8 +3,8 @@ $(document).ready(function() {
     function getCat(cat) {
         var queryUrl = "/api/categories";
         $.get(queryUrl,function(data){
-            console.log(data);
-            var categories = $("#categories");
+            // console.log(data);
+            var categories = $(".categories");
             for(var i = 0; i < data.length; i++){
                 var catbutton = ("<li>" + data[i].name + "<br><button id ='C" + data[i].id + "'class ='cat' name='" + data[i].name + "' value=" + data[i].id + "></button></li>");
                 categories.append(catbutton);
@@ -18,7 +18,7 @@ $(document).ready(function() {
     function mostrecentPosts(){
         var queryUrl = "api/posts/";
         $.get(queryUrl, function(data){
-            console.log(data);
+            // console.log(data);
             var username;
             var userimage;
             var card;
@@ -28,17 +28,18 @@ $(document).ready(function() {
                 $.get("/user/" + data[i].UserId, function(result){
                     username = result.username;
                     userimage = result.image;
-                    console.log(result);
-                
-
+                    // console.log(result);
                     card = 
                     "<div class='card'>" +
                         "<div class='card-header'>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'></a>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><h5 class='username card-title'>" + username + "</a></h5>" + 
-                        "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "'>" +
-                        "<div class='card-body'>" +
+                        "</div>";
+                    if(data[i].image){
+                        card+=  "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>";
+                    }
+                       
+                    card+= "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
                             "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
@@ -59,10 +60,10 @@ $(document).ready(function() {
     function mostrecentPostsbyCat(){
         $("#categoryPosts").html("");
         var catid = this.value;
-        console.log(catid);
+        // console.log(catid);
         var queryUrl = "/api/post/category/" + catid;
         $.get(queryUrl, function(data){
-            console.log(data);
+            // console.log(data);
             var username;
             var userimage;
             var card;
@@ -72,7 +73,7 @@ $(document).ready(function() {
                 $.get("/user/" + data[i].UserId, function(result){
                     username = result.username;
                     userimage = result.image;
-                    console.log(result);
+                    // console.log(result);
                 
 
                     card = 
@@ -80,9 +81,11 @@ $(document).ready(function() {
                         "<div class='card-header'>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'></a>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><h5 class='username card-title'>" + username + "</a></h5>" + 
-                        "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "'>" +
-                       "<div class='card-body'>" +
+                        "</div>";
+                    if(data[i].image){
+                       card+="<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>";
+                    }  
+                    card+=  "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
                             "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +

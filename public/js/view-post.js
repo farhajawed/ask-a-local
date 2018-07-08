@@ -160,7 +160,7 @@ $(document).ready(function () {
     var container = $(".show-comments-div");
     var queryUrl = "/api/post/"+postId+"/comments";
     $.get(queryUrl, function(data) {
-      console.log(data);
+      // console.log(data);
        for(var i = 0; i < data.length; i++){
         var eachCommentDiv = $("<div>").addClass("single-comment-div media p-3 mt-2");
         var imgLink = $("<a>").attr("href","/dashboard?user_id="+data[i].UserId);
@@ -186,7 +186,6 @@ $(document).ready(function () {
   //posting comment data
   function createComment(event){
     event.preventDefault();
-    console.log("comment posted on "+postId);
     var commentbody = $("#commentbody").val().trim();
     //if body is empty, return
     if(!commentbody){

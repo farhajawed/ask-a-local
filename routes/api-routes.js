@@ -303,9 +303,9 @@ app.get("/api/posts/:postId/user/:id",auth,function(req, res) {
     db.Post.findAll({
         attributes: [
           'UserId',
-          [db.sequelize.fn('COUNT', db.sequelize.col('UserId')), 'post_count'],
+          [db.sequelize.fn('COUNT', db.sequelize.col('UserId')), 'post_count'], //post_count alias
         ],
-        group: ['UserId'],
+        group: ['UserId'],  //groups by UserId
         having: {
                 'UserId': {
                   $eq: req.params.id
@@ -331,7 +331,7 @@ app.put("/en-dis/user/:id",function(req,res){
       });
   });
 
-  //gets users by username
+  //gets users by username and userrole = USER
   app.get("/api/users/username/:username",auth,function(req, res) {
       if(req.session.user.userRole==="ADMIN"){
         db.User.findAll({
@@ -380,7 +380,7 @@ app.put("/en-dis/user/:id",function(req,res){
   });
 
   //gets all comments by post id
-  app.get("/api/post/:postId/comments",function(req, res){
+  app.get("/api/post/:postId/comments",auth,function(req, res){
     var postId = req.params.postId
     db.Comment.findAll({
       where: {

@@ -40,7 +40,7 @@ $(document).ready(function() {
     
     function submitLoginForm(loginCredentials){
         $.post("/",loginCredentials,function(data){
-            console.log(data);
+            // console.log(data);
             if(data==="invalid"){
                 window.location.href = "/?msg=false";  
             }
@@ -48,7 +48,7 @@ $(document).ready(function() {
                 window.location.href = "/?msg=disabled";  
             }
             else{
-                console.log(data);
+                // console.log(data);
                 updateToken(data);
             }
            

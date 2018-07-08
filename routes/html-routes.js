@@ -8,7 +8,7 @@ module.exports = function(app) {
   var auth = function(req, res, next) {
     if (req.session.user)
     {
-      console.log(req.session.user.email);
+      // console.log(req.session.user.email);
       return next();
     }
     else
@@ -51,12 +51,12 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/post.html"));
   });
 
-  //Make new post page
+  //View post page
   app.get("/view-post", auth,function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/view-post.html"));
   });
 
-
+ 
   app.get("/dashboard", auth, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
   });
@@ -69,6 +69,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/QA.html"));
   });
 
+  //admin access
   app.get("/category-management", auth, function(req, res) {
     if(req.session.user.userRole === "ADMIN"){
       res.sendFile(path.join(__dirname, "../public/html/category-management.html"));
