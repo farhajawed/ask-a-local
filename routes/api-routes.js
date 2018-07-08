@@ -386,10 +386,72 @@ app.put("/en-dis/user/:id",function(req,res){
       where: {
         PostId: postId
       }, order: [['updatedAt', 'DESC']],include: [{ model: db.User, attributes: ['username','image'] }]
+    });
+    
+//questions api's start here
+  app.post("/api/questions", function(req, res) {
+    
+    db.Question.create({
+      title: req.body.title,
+      body:req.body.body,
+      UserId : req.session.user.id
+    }).
+    then(function(result) {
+      res.redirect("/view-question?question_id="+result.id);
+    })
+  });
+
+
+app.get("/api/questions", auth,function(req, res) {
+    db.Question.findAll({include: [ db.Answer ] },{order: [['createdAt', 'DESC']]})
+      .then(function(dbQuestion) {
+      res.json(dbQuestion);
+    });
+  });
+  
+  app.get("api/questions/:questionId/answers", auth, function(req, res){
+    var questionId = req.params.questionId
+    db.Answer.findAll({
+      where: {
+        questionId: questionId
+      }
     }).then(function(results){
       res.json(results);
     })
   });
 
+})
+
+  
+  
+  
+  app.get("/api/questions/:id", auth,function(req, res) {
+    db.Question.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Answer]
+    }).then(function(dbQuestion) {
+      res.json(dbQuestion);
+    });
+  });
+  
+ 
+  
+   
+
+
+
+
 }
+
+//   app.get("/api/count_posts",auth,function(req,res){
+//     db.Post.count({
+//       attributes: ['UserId'],
+//       group: 'UserId'
+//     }).then(function(dbCount){
+//       res.json(dbCount);
+//     });
+//   })
+
 

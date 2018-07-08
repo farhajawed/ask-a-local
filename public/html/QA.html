@@ -24,7 +24,12 @@
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <!-- Link to Moment.js should go here -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<<<<<<< HEAD
     <title>Ask-A-Local: QA</title>
+=======
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCr5WV3Tvfqk9UwNpYVRvnr67b9wPTjFlg&libraries=places&language=en"></script>
+    <title>Ask-A-Local: Dashboard</title>
+>>>>>>> QA
 </head>
 <style>
 .card-block{
@@ -50,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" class="global" data-toggle="tooltip" data-placement="bottom" title="Search global posts">
+                    <a class="nav-link" href="/explorer" class="global" data-toggle="tooltip" data-placement="bottom" title="Search global posts">
                         <img src="/images/globe.png">
                     </a>
                 </li>
@@ -99,16 +104,15 @@
                           <div class="card-header" role="tab" id="headingOne">
                             <h5 class="mb-0">
                               <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              <span>How Posting Works <img src="/images/icons8-light_on.png"></span>
+                              <span>How Asking Works <img src="/images/icons8-light_on.png"></span>
                               </a>
                             </h5>
                           </div>
                       
                             <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="card-block">
-                                     <center><img src="/images/icons8-user_typing_using_typewriter.png" class="img-fluid" > </center>
-                                    <p id="author-bio">Share your thoughts on a recently explored venue, or undertaken venture. Remember to be descriptive and informative, this encourages  users to post experiences you might find useful when your a tourist.</p>
-                                
+                                     <center><img src="/images/icons8-why_us.png" class="img-fluid" > </center>
+                                    <p id="author-bio">Here you can inquire about locations not yet posted. Admin or a fellow Native will get back to you.In turn keep the system going by answering questions you know the answer to.</p>
                                 </div>
                             </div>
                             </div>
@@ -118,25 +122,28 @@
             <div class="col-md-9">
               <div class="row">
                 <div class="col-md-2 offset-md-5 text-center mb-2 mt-2">
-                   <div class="text-center header-post">New Post</div>
+                   <div class="text-center header-post">Question</div>
                 </div>
              </div>  
              <div class="right"> 
-              <form id="new-post" action="/api/posts" method="POST" enctype="multipart/form-data">
+              <form id="new-question">
                     <div class="row">
                         <div class="col-md-12 mt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control custom mb-2" id="title" name="title" placeholder="Post title....">
-                                <textarea class="form-control custom mb-2" rows="10" id="body" name="body" placeholder="Share your thoughts..."></textarea>
+                                    <center><a  class="nav-link mb-3" href="/allquestions" class="global" data-toggle="tooltip" data-placement="bottom" title="See Other Questions">
+                                        <img src="/images/icons8-opera_glasses.png">
+                                    </a></center>
+                                <input type="text" class="form-control custom mb-2" id="title" name="title" placeholder="title....">
+                                <textarea class="form-control custom mb-2" rows="5" id="body" name="body" placeholder="ask a question..."></textarea>
                                 <select class="custom-select mb-2" id="category" name="category">
                                 </select>
-                                <input class="form-control custom" type="file" name="uploaded_image" accept="" />
+                                <input type="text" id="autocomplete" class="location">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-publish submit btn-lg">Publish</button>
+                                <button type="submit" class="btn btn-publish submit btn-lg">Ask</button>
                         </div>
                     </div>
                </form>

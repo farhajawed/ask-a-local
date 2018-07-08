@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes){
         type:DataTypes.STRING,
         },
     
+       
         Question:
         {
           type:DataTypes.TEXT,
