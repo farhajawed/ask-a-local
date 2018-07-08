@@ -1,2 +1,2 @@
 # ask-a-local
-https://fathomless-chamber-29612.herokuapp.com/
+https://dry-savannah-57068.herokuapp.com/
