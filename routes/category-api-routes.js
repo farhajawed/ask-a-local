@@ -16,7 +16,7 @@ module.exports = function(app) {
     db.Category.findAll(
       {
         order: [
-          ['name', 'DESC']
+          ['name', 'ASC']
         ]
       })
       .then(function(result) {
