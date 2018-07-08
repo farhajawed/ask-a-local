@@ -4,10 +4,12 @@ $(document).ready(function() {
         var queryUrl = "/api/categories";
         $.get(queryUrl,function(data){
             console.log(data);
-            var categories = $(".categories");
+            var categories = $("#categories");
             for(var i = 0; i < data.length; i++){
-                var catbutton = ("<button class ='cat' value=" + data[i].id + ">" + data[i].name + "</button>")
+                var catbutton = ("<li>" + data[i].name + "<br><button id ='C" + data[i].id + "'class ='cat' name='" + data[i].name + "' value=" + data[i].id + "></button></li>");
                 categories.append(catbutton);
+                var selector = "#C"+ data[i].id
+                $(selector).html("<img src='/images/icons8-" + data[i].name + "-64.png'>");
             }
         })          
     }
@@ -45,10 +47,6 @@ $(document).ready(function() {
                     spot.append(card);
 
                 })
-
-                $.get("api/posts/" + data[i].id + "/comments", function(result1){
-                    spot.append(JSON.stringify(result1));
-                });
 
                 $(".catPosts").append(spot);
             }
@@ -93,10 +91,6 @@ $(document).ready(function() {
                     spot.append(card);
 
                 })
-
-                $.get("api/posts/" + data[i].id + "/comments", function(result1){
-                    spot.append(JSON.stringify(result1));
-                });
 
                 $(".catPosts").append(spot);
             }

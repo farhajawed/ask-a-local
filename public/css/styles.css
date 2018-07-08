@@ -288,3 +288,10 @@ input:disabled{
     color: whitesmoke;
 }
 
+#categories{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background: rgba(0,0,0,.13) !important;
+    padding: 30px;
+}
