@@ -27,16 +27,17 @@ $(document).ready(function() {
                     username = result.username;
                     userimage = result.image;
                     console.log(result);
-                
-
                     card = 
                     "<div class='card'>" +
                         "<div class='card-header'>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'></a>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><h5 class='username card-title'>" + username + "</a></h5>" + 
-                        "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "'>" +
-                        "<div class='card-body'>" +
+                        "</div>";
+                    if(data[i].image){
+                        card+=  "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>";
+                    }
+                       
+                    card+= "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
                             "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
@@ -82,9 +83,11 @@ $(document).ready(function() {
                         "<div class='card-header'>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'></a>" + 
                             "<a href='/dashboard?user_id="+data[i].UserId+"'><h5 class='username card-title'>" + username + "</a></h5>" + 
-                        "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "'>" +
-                       "<div class='card-body'>" +
+                        "</div>";
+                    if(data[i].image){
+                       card+="<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>";
+                    }  
+                    card+=  "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
                             "</a></h6>" +
                             "<p class='card-text'>" + data[i].body + "</p>" +
