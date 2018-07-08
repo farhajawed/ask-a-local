@@ -4,7 +4,7 @@ $(document).ready(function() {
         var queryUrl = "/api/categories";
         $.get(queryUrl,function(data){
             // console.log(data);
-            var categories = $(".categories");
+            var categories = $("#categories");
             for(var i = 0; i < data.length; i++){
                 var catbutton = ("<li>" + data[i].name + "<br><button id ='C" + data[i].id + "'class ='cat' name='" + data[i].name + "' value=" + data[i].id + "></button></li>");
                 categories.append(catbutton);
