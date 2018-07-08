@@ -32,10 +32,10 @@ $(document).ready(function() {
                     card = 
                     "<div class='card'>" +
                         "<div class='card-header'>" + 
-                            "<img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'>" + 
-                            "<h5 class='username card-title'>" + username + "</h5>" + 
+                            "<a href='/dashboard?user_id="+data[i].UserId+"'><img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'></a>" + 
+                            "<a href='/dashboard?user_id="+data[i].UserId+"'><h5 class='username card-title'>" + username + "</a></h5>" + 
                         "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
+                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "'>" +
                         "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
                             "</a></h6>" +
@@ -80,10 +80,10 @@ $(document).ready(function() {
                     card = 
                     "<div class='card'>" +
                         "<div class='card-header'>" + 
-                            "<img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'>" + 
-                            "<h5 class='username card-title'>" + username + "</h5>" + 
+                            "<a href='/dashboard?user_id="+data[i].UserId+"'><img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'></a>" + 
+                            "<a href='/dashboard?user_id="+data[i].UserId+"'><h5 class='username card-title'>" + username + "</a></h5>" + 
                         "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
+                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "'>" +
                        "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'><a href='../view-post?post_id=" +data[i].id+"'>"+data[i].title+
                             "</a></h6>" +
