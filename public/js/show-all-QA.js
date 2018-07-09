@@ -24,13 +24,16 @@ $(document).ready(function() {
                             "<img class='thumbnail' src='/images/upload_images/" + userimage + "' alt = 'user image'>" + 
                             "<h5 class='username card-title'>" + username + "</h5>" + 
                         "</div>" +
-                        "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
+                        // "<img class='card-img-top' src='/images/upload_images/" + data[i].image + "' alt='Card image'>" +
                         "<div class='card-body'>" +
                             "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].title + "</h6>" +
                             "<p class='card-text'>" + data[i].Question + "</p>" +
                         "</div>" + 
-                        "<div class='card-body'>" +
-                        "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].Answer + "</h6>" +
+                        "<div class='card-body'>";
+                        if(data[i].Answer){
+                            card+= "<h6 class='card-subtitle mb-2 text-muted'>" + data[i].Answer + "</h6>";
+                        }
+                       
                        
                     "</div>" + 
                 "</div>";

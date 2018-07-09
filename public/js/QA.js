@@ -26,7 +26,8 @@ $(document).ready(function() {
         $.post("api/questions/",newQuestion)
           .then(function(data){
               console.log(data);
-             window.location.href="/view-question?question_id="+data.id;
+            //   window.location.href="/view-question?question_id="+data.id;
+              window.location.href="/allquestions"; //as there is no view page
         })
   }
   

@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes){
         Answer:
         {
           type:DataTypes.TEXT,
-        //   allowNull:false,
+           allowNull:false,
          validate: {
              len:[1]
          }
