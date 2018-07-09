@@ -68,7 +68,12 @@ $(document).ready(function() {
     function showAboutSection(user){
       
         // image
-        $(".profile-image").attr("src","/images/upload_images/"+user.image);
+        // $(".profile-image").attr("src","/images/upload_images/"+user.image);
+        $(".profile-image")
+        .error(function() {
+         $( this ).attr( "src", "/images/upload_images/default.png" );
+        })
+         .attr( "src", "/images/upload_images/"+user.image);
           
         //show edit button only if logged in user visits her own dashboard
         if(logged === true){ 

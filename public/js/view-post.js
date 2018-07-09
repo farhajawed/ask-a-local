@@ -56,7 +56,12 @@ $(document).ready(function () {
       $.get(queryUrl, function (data) {
         if (data) {
           var anchor = $("<a>").attr("href","/dashboard?user_id="+data.id);
-          var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
+          // var img = $("<img>").attr("src", "/images/upload_images/" + data.image);
+          var img = $("<img>")
+          .error(function() {
+          $( this ).attr( "src", "/images/upload_images/default.png" );
+          })
+         .attr( "src", "/images/upload_images/"+data.image);
           img.addClass("rounded-circle img-fluid post-creator-image");
           anchor.append(img);
           $("#post-author-img").append(anchor);
@@ -164,7 +169,12 @@ $(document).ready(function () {
        for(var i = 0; i < data.length; i++){
         var eachCommentDiv = $("<div>").addClass("single-comment-div media p-3 mt-2");
         var imgLink = $("<a>").attr("href","/dashboard?user_id="+data[i].UserId);
-        var commenterImg = $("<img>").attr("src","/images/upload_images/"+data[i].User.image);
+        // var commenterImg = $("<img>").attr("src","/images/upload_images/"+data[i].User.image);
+        var commenterImg = $("<img>")
+        .error(function() {
+         $( this ).attr( "src", "/images/upload_images/default.png" );
+        })
+         .attr("src","/images/upload_images/"+data[i].User.image);
         commenterImg.addClass("mr-3 rounded-circle commenter-img");
         commenterImg.attr("alt",data[i].User.username);
         imgLink.append(commenterImg);
