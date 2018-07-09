@@ -28,10 +28,17 @@ module.exports = function(sequelize, DataTypes){
     Question.associate = function (models) {
         Question.hasMany(models.Answer, {
             foreignKey: {
-                allowNull:false
+                allowNull:true //should be true
             }
 
-        })
+        });
+
+        Question.belongsTo(models.User, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+      
     
     }
 
@@ -41,4 +48,4 @@ return Question;
 
 
 
-}
+};

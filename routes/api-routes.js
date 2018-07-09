@@ -379,6 +379,7 @@ app.put("/en-dis/user/:id",function(req,res){
       });
   });
 
+   
   //gets all comments by post id
   app.get("/api/post/:postId/comments",auth,function(req, res){
     var postId = req.params.postId
@@ -389,18 +390,20 @@ app.put("/en-dis/user/:id",function(req,res){
     }).then(function(results){
       res.json(results);
     })
+  });
     
 //questions api's start here
-  app.post("/api/questions", function(req, res) {
-    
+  app.post("/api/questions/",function(req,res){
     db.Question.create({
-      title: req.body.title,
-      body:req.body.body,
-      UserId : req.session.user.id
-    }).
-    then(function(result) {
-      res.redirect("/view-question?question_id="+result.id);
-    })
+       title: req.body.title,
+       Question : req.body.body,
+       location : req.body.location,
+       UserId :  req.session.user.id
+    }).then(function(dbComment){
+      res.json(dbComment);
+    }).catch(function(err) {
+        res.json(err);
+      });
   });
 
 
@@ -422,12 +425,8 @@ app.get("/api/questions", auth,function(req, res) {
     })
   });
 
-})
 
-  
-  
-  
-  app.get("/api/questions/:id", auth,function(req, res) {
+app.get("/api/questions/:id", auth,function(req, res) {
     db.Question.findOne({
       where: {
         id: req.params.id
@@ -437,14 +436,6 @@ app.get("/api/questions", auth,function(req, res) {
       res.json(dbQuestion);
     });
   });
-  
- 
-  
-   
-
-
-
-
 }
 
 //   app.get("/api/count_posts",auth,function(req,res){
