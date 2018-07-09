@@ -27,17 +27,20 @@ html, body
 
 .carousel-caption p{
     font-size:28px;
+    color:white;
+    font-style: bold;
 }
 
 .login-card{
- background: rgba(0,0,0,.7) !important;
+ background: rgba(0, 0, 0, 0.397) !important;
 
 }
 .site-name{
    color:crimson;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color:black;
-  font-family: 'Luckiest Guy', cursive;
+  font-size:45;
+  font-family: 'pacifico', cursive;
    margin:0 auto;
 }
 
