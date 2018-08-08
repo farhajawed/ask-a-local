@@ -16,14 +16,10 @@
 ## Preview: https://dry-savannah-57068.herokuapp.com/
 
 ## Built With:
-  <ul>
-  <li>Bootstrap</li>
-  <li>jQuery<li>
-  <li>Node.js</li>
-  <li>Express</li>
-  <li>MySQL<li>
-  <li>Sequelize<li>
-  </ul>
-     
-
+  * Bootstrap
+  * jQuery
+  * Node.js
+  * Express
+  * MySQL
+  * Sequelize
 
