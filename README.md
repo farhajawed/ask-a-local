@@ -13,9 +13,17 @@
   * Enjoy
 
 
-https://dry-savannah-57068.herokuapp.com/
+## Preview: https://dry-savannah-57068.herokuapp.com/
 
-Testing:  
-Login as an admin  
-username: admin  
-password: admin  
+## Built With:
+  <ul>
+  <li>Bootstrap</li>
+  <li>jQuery<li>
+  <li>Node.js</li>
+  <li>Express</li>
+  <li>MySQL<li>
+  <li>Sequelize<li>
+  </ul>
+     
+
+
